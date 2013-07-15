@@ -15,6 +15,7 @@
     <root level="DEBUG">
         <appender-ref ref="STDOUT" />
     </root>
-
+    
+    <logger name="org.springframework" level="WARN" />
     <logger name="co.yellowbricks" level="ALL" />
 </configuration>

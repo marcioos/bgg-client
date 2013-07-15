@@ -14,22 +14,19 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
 
-        <!-- Spring -->
-        <org.springframework-version>3.2.3.RELEASE</org.springframework-version>
-
-        <!-- AOP -->
-        <org.aspectj-version>1.7.3</org.aspectj-version>
-
-        <!-- Testing -->
+        <!-- Logging -->
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <ch.qos.logback-version>1.0.13</ch.qos.logback-version>
-
-        <!-- DI -->
-        <javax.inject.version>1</javax.inject.version>
 
         <!-- Testing -->
         <junit.version>4.11</junit.version>
         <mockito.version>1.9.5</mockito.version>
+        
+        <!-- HTTP Client -->
+        <async-http-client.version>1.7.18</async-http-client.version>
+        
+        <!-- Guava -->
+        <guava.version>14.0.1</guava.version>
 
         <!-- Maven Plugins -->
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
@@ -55,27 +52,6 @@
     </repositories>
 
     <dependencies>
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${org.springframework-version}</version>
-            <exclusions>
-                <!-- Exclude Commons Logging in favor of SLF4j -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <!-- AspectJ -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>${org.aspectj-version}</version>
-        </dependency>
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -95,13 +71,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- DI -->
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>${javax.inject.version}</version>
-        </dependency>
-
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -116,17 +85,17 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${org.springframework-version}</version>
-            <scope>test</scope>
-        </dependency>
-        
+        <!-- HTTP Client -->
    		<dependency>
 			<groupId>com.ning</groupId>
 			<artifactId>async-http-client</artifactId>
-			<version>1.7.18</version>
+			<version>${async-http-client.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
 		</dependency>
     </dependencies>
 

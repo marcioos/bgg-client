@@ -1,17 +1,20 @@
-package co.yellowbricks.bggclient.domain;
+package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import com.google.common.base.Objects;
 
-public class Item {
+import co.yellowbricks.bggclient.common.domain.Value;
+
+public class FetchedItem {
 
 	@XmlAttribute(name = "type")
 	private String type;
 	
-	@XmlAttribute(name = "id")
+	@XmlAttribute(name = "id", required = true)
 	private int id;
 	
 	@XmlElement(name = "thumbnail")
@@ -21,7 +24,7 @@ public class Item {
 	private String imageUrl;
 	
 	@XmlElement(name = "name")
-	private Name name;
+	private FetchedItemName name;
 	
 	@XmlElement(name = "description")
 	private String description;
@@ -51,107 +54,80 @@ public class Item {
 		return type;
 	}
 
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public int getId() {
 		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getThumbnailUrl() {
 		return thumbnailUrl;
 	}
 
-	public void setThumbnailUrl(String thumbnailUrl) {
-		this.thumbnailUrl = thumbnailUrl;
-	}
-
 	public String getImageUrl() {
 		return imageUrl;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
-	}
-
-	public Name getName() {
+	public FetchedItemName getName() {
 		return name;
-	}
-
-	public void setName(Name name) {
-		this.name = name;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public Value getYear() {
 		return year;
-	}
-
-	public void setYear(Value year) {
-		this.year = year;
 	}
 
 	public Value getMinPlayers() {
 		return minPlayers;
 	}
 
-	public void setMinPlayers(Value minPlayers) {
-		this.minPlayers = minPlayers;
-	}
-
 	public Value getMaxPlayers() {
 		return maxPlayers;
-	}
-
-	public void setMaxPlayers(Value maxPlayers) {
-		this.maxPlayers = maxPlayers;
 	}
 
 	public Value getMinAge() {
 		return minAge;
 	}
 
-	public void setMinAge(Value minAge) {
-		this.minAge = minAge;
-	}
-
 	public Value getPlayingTime() {
 		return playingTime;
-	}
-
-	public void setPlayingTime(Value playingTime) {
-		this.playingTime = playingTime;
 	}
 
 	public List<Poll> getPolls() {
 		return polls;
 	}
 
-	public void setPolls(List<Poll> polls) {
-		this.polls = polls;
-	}
-
 	public List<Link> getLinks() {
 		return links;
 	}
-
-	public void setLinks(List<Link> links) {
-		this.links = links;
+	
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(type, id, thumbnailUrl, imageUrl, name, description, year, minAge, maxPlayers, playingTime, polls, links);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof FetchedItem) {
+			FetchedItem that = (FetchedItem) obj;
+			return Objects.equal(that.type, this.type)
+					&& Objects.equal(that.id, this.id)
+					&& Objects.equal(that.thumbnailUrl, this.thumbnailUrl)
+					&& Objects.equal(that.imageUrl, this.imageUrl)
+					&& Objects.equal(that.name, this.name)
+					&& Objects.equal(that.description, this.description)
+					&& Objects.equal(that.year, this.year)
+					&& Objects.equal(that.minAge, this.minAge)
+					&& Objects.equal(that.maxPlayers, this.maxPlayers)
+					&& Objects.equal(that.playingTime, this.playingTime)
+					&& Objects.equal(that.polls, this.polls)
+					&& Objects.equal(that.links, this.links);
+		}
+		return false;
 	}
 
-	public static class Name {
+	public static class FetchedItemName {
 
 		@XmlAttribute(name = "type")
 		private String type;
@@ -166,24 +142,28 @@ public class Item {
 			return type;
 		}
 
-		public void setType(String type) {
-			this.type = type;
-		}
-
 		public int getSortIndex() {
 			return sortIndex;
-		}
-
-		public void setSortIndex(int sortIndex) {
-			this.sortIndex = sortIndex;
 		}
 
 		public String getValue() {
 			return value;
 		}
-
-		public void setValue(String value) {
-			this.value = value;
+		
+		@Override
+		public int hashCode() {
+			return Objects.hashCode(type, sortIndex, value);
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof FetchedItemName) {
+				FetchedItemName that = (FetchedItemName) obj;
+				return Objects.equal(that.type, this.type)
+						&& Objects.equal(that.sortIndex, this.sortIndex)
+						&& Objects.equal(that.value, this.value);
+			}
+			return false;
 		}
 	}
 }

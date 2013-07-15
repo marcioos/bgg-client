@@ -1,9 +1,11 @@
-package co.yellowbricks.bggclient.domain;
+package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+
+import com.google.common.base.Objects;
 
 public class Poll {
 
@@ -23,32 +25,31 @@ public class Poll {
 		return name;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
 	public String getTitle() {
 		return title;
-	}
-	
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	
 	public int getTotalVotes() {
 		return totalVotes;
 	}
 	
-	public void setTotalVotes(int totalVotes) {
-		this.totalVotes = totalVotes;
-	}
-	
 	public List<Results> getResultsList() {
 		return resultsList;
 	}
 	
-	public void setResultsList(List<Results> resultsList) {
-		this.resultsList = resultsList;
+	@Override
+	public int hashCode() {
+		return Objects.hashCode(name, title, totalVotes, resultsList);
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Poll) {
+			Poll that = (Poll) obj;
+			return Objects.equal(that.name, this.name)
+					&& Objects.equal(that.title, this.title) && Objects.equal(that.resultsList, this.resultsList) && Objects.equal(that.totalVotes, this.resultsList);
+		}
+		return false;
 	}
 	
 	public static final class Results {
@@ -63,16 +64,22 @@ public class Poll {
 			return numPlayers;
 		}
 		
-		public void setNumPlayers(int numPlayers) {
-			this.numPlayers = numPlayers;
-		}
-		
 		public List<Result> getResults() {
 			return results;
 		}
 		
-		public void setResults(List<Result> results) {
-			this.results = results;
+		@Override
+		public int hashCode() {
+			return Objects.hashCode(numPlayers, results);
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Results) {
+				Results that = (Results) obj;
+				return Objects.equal(that.numPlayers, this.numPlayers) && Objects.equal(that.results, this.results);
+			}
+			return false;
 		}
 	}
 	
@@ -88,16 +95,22 @@ public class Poll {
 			return value;
 		}
 		
-		public void setValue(String value) {
-			this.value = value;
-		}
-		
 		public int getNumVotes() {
 			return numVotes;
 		}
 		
-		public void setNumVotes(int numVotes) {
-			this.numVotes = numVotes;
+		@Override
+		public int hashCode() {
+			return Objects.hashCode(value, numVotes);
+		}
+		
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Result) {
+				Result that = (Result) obj;
+				return Objects.equal(that.value, this.value) && Objects.equal(that.numVotes, this.numVotes);
+			}
+			return false;
 		}
 	}
 }
