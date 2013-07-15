@@ -1,11 +1,11 @@
-package co.yellowbricks.config;
+package co.yellowbricks.bggclient.config;
 
 import org.springframework.context.annotation.*;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.core.io.ClassPathResource;
 
 @Configuration
-@ComponentScan(basePackages = { "co.yellowbricks" })
+@ComponentScan(basePackages = { "co.yellowbricks.bggclient" })
 public class ApplicationSpringContext {
 
     @Bean
