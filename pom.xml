@@ -13,6 +13,12 @@
         <!-- General -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
+        
+        <!-- Spring -->
+        <spring.version>3.2.3.RELEASE</spring.version>
+        
+        <!-- DI -->
+        <javax.inject.version>1</javax.inject.version>
 
         <!-- Logging -->
         <org.slf4j-version>1.7.5</org.slf4j-version>
@@ -52,6 +58,32 @@
     </repositories>
 
     <dependencies>
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <exclusions>
+                <!-- Exclude Commons Logging in favor of SLF4j -->
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>        
+        
+        <!-- DI -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>${javax.inject.version}</version>
+        </dependency>
+    
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -84,6 +116,12 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>        
 
         <!-- HTTP Client -->
    		<dependency>
