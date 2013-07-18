@@ -5,6 +5,8 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import com.google.common.base.Objects;
 
 import co.yellowbricks.bggclient.common.domain.Value;
@@ -126,6 +128,11 @@ public class FetchItem {
 		}
 		return false;
 	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
 
 	public static class FetchedItemName {
 
@@ -164,6 +171,11 @@ public class FetchItem {
 						&& Objects.equal(that.value, this.value);
 			}
 			return false;
+		}
+		
+		@Override
+		public String toString() {
+			return value;
 		}
 	}
 }

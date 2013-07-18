@@ -1,44 +1,42 @@
 package co.yellowbricks.bggclient.request;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import javax.inject.Inject;
+import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import co.yellowbricks.bggclient.common.domain.Thing;
 
-import com.ning.http.client.AsyncHttpClient;
-import com.ning.http.client.Response;
+import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 
-@Service
+@Component
 public class BggService {
 	
-	private static final String BGG_BASE_URL = "http://www.boardgamegeek.com/xmlapi2";
-	private static final String BGG_SEARCH_URL = BGG_BASE_URL + "/search";
-	private static final String BGG_FETCH_URL = BGG_BASE_URL + "/thing";
-	
-	public InputStream search(Thing thing, String query) throws BggServiceException {
-		AsyncHttpClient httpClient = new AsyncHttpClient();
-		try {
-			Future<Response> future = 
-					httpClient.prepareGet(BGG_SEARCH_URL).addQueryParameter("type", thing.getType()).addQueryParameter("query", query).execute();
-			return future.get().getResponseBodyAsStream();
-		} catch (InterruptedException e) {
-			throw createSearchException(thing, query, e);
-		} catch (ExecutionException e) {
-			throw createSearchException(thing, query, e);
-		} catch (IOException e) {
-			throw createSearchException(thing, query, e);
-		} finally {
-			httpClient.close();
-		}
-	}
+	@Value("${SEARCH_URL}")
+	private String searchURL;
 
-	private BggServiceException createSearchException(Thing thing, String query, Throwable e) {
-		return new BggServiceException(String.format("While searching for %s with query %s", thing, query), e);
+	@Value("${FETCH_URL}")
+	private String fetchURL;
+	
+	@Inject private RequestExecutor requestExecutor;
+	
+	public Source search(Thing thing, final String query) throws BggServiceException {
+		return new StreamSource(requestExecutor.executeRequest(searchURL, thing, new ParameterAdder() {
+			@Override
+			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
+				return requestBuilder.addQueryParameter("query", query);
+			}
+		}));
+	}
+	
+	public Source fetch(Thing thing, final int id) throws BggServiceException {
+		return new StreamSource(requestExecutor.executeRequest(fetchURL, thing, new ParameterAdder() {
+			@Override
+			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
+				return requestBuilder.addQueryParameter("id", String.valueOf(id));
+			}
+		}));
 	}
 }

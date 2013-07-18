@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.config.SpringContext;
 import co.yellowbricks.bggclient.search.domain.SearchItems;
 
@@ -19,9 +20,14 @@ public class SearchServiceTest {
 	@Inject private SearchService searchService;
 	
 	@Test
-	public void test() throws SearchException {
+	public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
 		SearchItems items = searchService.search("dominion");
 		
 		Assert.assertThat(items.getTotal(), CoreMatchers.is(27));
+	}
+	
+	@Test(expected = NoItemsFoundException.class)
+	public void shouldFindNoItems() throws SearchException, NoItemsFoundException {
+		searchService.search("sdadasddominiodasdasdsan");
 	}
 }

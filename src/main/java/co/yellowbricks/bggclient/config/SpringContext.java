@@ -20,7 +20,7 @@ public class SpringContext {
     public static PropertyPlaceholderConfigurer propertyPlaceholderConfigurer() {
         PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
 
-        ppc.setLocation(new ClassPathResource("/xmlapi.properties")); //$NON-NLS-1$
+        ppc.setLocation(new ClassPathResource("/xmlapi.properties"));
         return ppc;
     }
     

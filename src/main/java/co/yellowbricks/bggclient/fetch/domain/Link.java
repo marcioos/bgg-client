@@ -2,6 +2,8 @@ package co.yellowbricks.bggclient.fetch.domain;
 
 import javax.xml.bind.annotation.XmlAttribute;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import com.google.common.base.Objects;
 
 public class Link {
@@ -41,5 +43,10 @@ public class Link {
 					&& Objects.equal(that.value, this.value);
 		}
 		return false;
+	}
+	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 }

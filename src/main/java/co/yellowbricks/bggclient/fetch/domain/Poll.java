@@ -5,6 +5,8 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 import com.google.common.base.Objects;
 
 public class Poll {
@@ -52,6 +54,11 @@ public class Poll {
 		return false;
 	}
 	
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
+	}
+	
 	public static final class Results {
 		
 		@XmlAttribute(name = "numplayers")
@@ -80,6 +87,11 @@ public class Poll {
 				return Objects.equal(that.numPlayers, this.numPlayers) && Objects.equal(that.results, this.results);
 			}
 			return false;
+		}
+		
+		@Override
+		public String toString() {
+			return ReflectionToStringBuilder.toString(this);
 		}
 	}
 	
@@ -111,6 +123,11 @@ public class Poll {
 				return Objects.equal(that.value, this.value) && Objects.equal(that.numVotes, this.numVotes);
 			}
 			return false;
+		}
+		
+		@Override
+		public String toString() {
+			return ReflectionToStringBuilder.toString(this);
 		}
 	}
 }
