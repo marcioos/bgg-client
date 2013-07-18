@@ -28,6 +28,6 @@ public class SearchServiceTest {
 	
 	@Test(expected = NoItemsFoundException.class)
 	public void shouldFindNoItems() throws SearchException, NoItemsFoundException {
-		searchService.search("sdadasddominiodasdasdsan");
+		searchService.search("a game that should not be exist");
 	}
 }
