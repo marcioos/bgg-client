@@ -7,7 +7,7 @@ import co.yellowbricks.bggclient.common.domain.Value;
 
 import com.google.common.base.Objects;
 
-public class SearchedItem {
+public class SearchItem {
 
 	@XmlElement(name = "name")
 	private SearchedItemName name;
@@ -30,8 +30,8 @@ public class SearchedItem {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SearchedItem) {
-			SearchedItem that = (SearchedItem) obj;
+		if (obj instanceof SearchItem) {
+			SearchItem that = (SearchItem) obj;
 			return Objects.equal(that.name, this.name) && Objects.equal(that.year, this.year);
 		}
 		return false;

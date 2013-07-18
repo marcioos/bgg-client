@@ -9,7 +9,7 @@ import com.google.common.base.Objects;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
-public class FetchedItem {
+public class FetchItem {
 
 	@XmlAttribute(name = "type")
 	private String type;
@@ -109,8 +109,8 @@ public class FetchedItem {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof FetchedItem) {
-			FetchedItem that = (FetchedItem) obj;
+		if (obj instanceof FetchItem) {
+			FetchItem that = (FetchItem) obj;
 			return Objects.equal(that.type, this.type)
 					&& Objects.equal(that.id, this.id)
 					&& Objects.equal(that.thumbnailUrl, this.thumbnailUrl)

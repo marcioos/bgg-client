@@ -4,28 +4,29 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
+import javax.inject.Inject;
+import javax.xml.transform.stream.StreamSource;
+
+import org.springframework.oxm.jaxb.Jaxb2Marshaller;
+import org.springframework.stereotype.Service;
+
+import co.yellowbricks.bggclient.search.domain.SearchItems;
 
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.Response;
 
-import co.yellowbricks.bggclient.fetch.domain.FetchedItems;
-import co.yellowbricks.bggclient.search.domain.SearchedItems;
-
+@Service
 public class SearchService {
+	
+	@Inject @Search private Jaxb2Marshaller jaxb2Marshaller;
 
-	public SearchedItems search(String query) throws SearchException {
+	public SearchItems search(String query) throws SearchException {
 		AsyncHttpClient asyncHttpClient = new AsyncHttpClient();
 		Future<Response> f;
 		try {
 			f = asyncHttpClient.prepareGet("http://www.boardgamegeek.com/xmlapi2/search").addQueryParameter("query", query).addQueryParameter("type", "boardgame").execute();
-			JAXBContext jaxbContext = JAXBContext.newInstance(FetchedItems.class, SearchedItems.class);
-			Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-			return (SearchedItems) unmarshaller.unmarshal(f.get().getResponseBodyAsStream());
-		} catch (JAXBException e) {
-			throw new SearchException("While searching for " + query, e);
+			
+			return (SearchItems) jaxb2Marshaller.unmarshal(new StreamSource(f.get().getResponseBodyAsStream()));
 		} catch (IOException e) {
 			throw new SearchException("While searching for " + query, e);
 		} catch (InterruptedException e) {

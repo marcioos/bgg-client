@@ -9,19 +9,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Objects;
 
 @XmlRootElement(name = "items")
-public class FetchedItems {
+public class FetchItems {
 
 	@XmlAttribute(name = "termsofuse")
 	private String termsOfUseUrl;
 	
 	@XmlElement(name = "item")
-	private List<FetchedItem> items;
+	private List<FetchItem> items;
 	
 	public String getTermsOfUseUrl() {
 		return termsOfUseUrl;
 	}
 	
-	public List<FetchedItem> getItems() {
+	public List<FetchItem> getItems() {
 		return items;
 	}
 	
@@ -32,8 +32,8 @@ public class FetchedItems {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof FetchedItems) {
-			FetchedItems that = (FetchedItems) obj;
+		if (obj instanceof FetchItems) {
+			FetchItems that = (FetchItems) obj;
 			return Objects.equal(that.getItems(), this.items)
 					&& Objects.equal(that.getTermsOfUseUrl(), this.getTermsOfUseUrl());
 		}
