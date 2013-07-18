@@ -17,5 +17,6 @@
     </root>
     
     <logger name="org.springframework" level="WARN" />
+    <logger name="com.ning" level="WARN" />
     <logger name="co.yellowbricks" level="ALL" />
 </configuration>
