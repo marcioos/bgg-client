@@ -1,12 +1,12 @@
 package co.yellowbricks.bggclient.common.domain;
 
-public enum Thing {
+public enum ThingType {
 
 	BOARDGAME("boardgame");
 	
 	private final String type;
 	
-	private Thing(String type) {
+	private ThingType(String type) {
 		this.type = type;
 	}
 	

@@ -7,10 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
+import co.yellowbricks.bggclient.fetch.CollectionQualifier;
 import co.yellowbricks.bggclient.fetch.Fetch;
-import co.yellowbricks.bggclient.fetch.domain.FetchItems;
+import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
+import co.yellowbricks.bggclient.fetch.domain.ItemCollection;
 import co.yellowbricks.bggclient.search.Search;
-import co.yellowbricks.bggclient.search.domain.SearchItems;
+import co.yellowbricks.bggclient.search.domain.SearchOutput;
 
 @Configuration
 @ComponentScan(basePackages = "co.yellowbricks.bggclient")
@@ -28,7 +30,7 @@ public class SpringContext {
     public Jaxb2Marshaller jaxb2SearchMarshaller() {
     	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     	
-    	jaxb2Marshaller.setClassesToBeBound(SearchItems.class);
+    	jaxb2Marshaller.setClassesToBeBound(SearchOutput.class);
     	return jaxb2Marshaller;
     }
     
@@ -36,7 +38,15 @@ public class SpringContext {
     public Jaxb2Marshaller jaxb2FetchMarshaller() {
     	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     	
-    	jaxb2Marshaller.setClassesToBeBound(FetchItems.class);
+    	jaxb2Marshaller.setClassesToBeBound(FetchItemOutput.class);
+    	return jaxb2Marshaller;
+    }
+    
+    @Bean @CollectionQualifier
+    public Jaxb2Marshaller jaxb2CollectionMarshaller() {
+    	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
+    	
+    	jaxb2Marshaller.setClassesToBeBound(ItemCollection.class);
     	return jaxb2Marshaller;
     }
 }

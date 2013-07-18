@@ -9,7 +9,7 @@ import co.yellowbricks.bggclient.common.domain.Value;
 
 import com.google.common.base.Objects;
 
-public class SearchItem {
+public class ThinItem {
 
 	@XmlAttribute(name = "type")
 	private String type;
@@ -18,7 +18,7 @@ public class SearchItem {
 	private int id;
 	
 	@XmlElement(name = "name")
-	private SearchedItemName name;
+	private ThinItemName name;
 	
 	@XmlElement(name = "yearpublished")
 	private Value year;
@@ -31,7 +31,7 @@ public class SearchItem {
 		return id;
 	}
 	
-	public SearchedItemName getName() {
+	public ThinItemName getName() {
 		return name;
 	}
 	
@@ -46,8 +46,8 @@ public class SearchItem {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SearchItem) {
-			SearchItem that = (SearchItem) obj;
+		if (obj instanceof ThinItem) {
+			ThinItem that = (ThinItem) obj;
 			return Objects.equal(that.name, this.name) && Objects.equal(that.year, this.year)
 					&& Objects.equal(that.type, this.type) && Objects.equal(that.id, this.id);
 		}
@@ -59,7 +59,7 @@ public class SearchItem {
 		return ReflectionToStringBuilder.toString(this);
 	}
 	
-	public static final class SearchedItemName {
+	public static final class ThinItemName {
 		
 		@XmlAttribute(name = "type")
 		private String type;
@@ -87,8 +87,8 @@ public class SearchItem {
 		
 		@Override
 		public boolean equals(Object obj) {
-			if (obj instanceof SearchedItemName) {
-				SearchedItemName that = (SearchedItemName) obj;
+			if (obj instanceof ThinItemName) {
+				ThinItemName that = (ThinItemName) obj;
 				return Objects.equal(that.type, this.type) && Objects.equal(that.value, this.value);
 			}
 			return false;

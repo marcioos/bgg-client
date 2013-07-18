@@ -8,30 +8,50 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
-import co.yellowbricks.bggclient.common.domain.Thing;
-import co.yellowbricks.bggclient.fetch.domain.FetchItem;
-import co.yellowbricks.bggclient.fetch.domain.FetchItems;
+import co.yellowbricks.bggclient.common.domain.ThingType;
+import co.yellowbricks.bggclient.fetch.domain.Item;
+import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
+import co.yellowbricks.bggclient.fetch.domain.ItemCollection;
 import co.yellowbricks.bggclient.request.BggService;
 import co.yellowbricks.bggclient.request.BggServiceException;
 
 @Service
 public class FetchService {
 
-	@Inject @Fetch private Jaxb2Marshaller jaxb2Marshaller;
-	@Inject private BggService bgg;
-	
-	public FetchItem fetch(int id) throws FetchException, NoItemsFoundException {
-		try {
-			FetchItems items = (FetchItems) jaxb2Marshaller.unmarshal(bgg.fetch(Thing.BOARDGAME, id));
+	@Inject @Fetch 
+	private Jaxb2Marshaller jaxb2FetchMarshaller;
 
-			if (!CollectionUtils.isEmpty(items.getItems())) {
+	@Inject @CollectionQualifier 
+	private Jaxb2Marshaller jaxb2CollectionMarshaller;
+
+	@Inject
+	private BggService bgg;
+	
+	public Item fetch(int id) throws FetchException, NoItemsFoundException {
+		try {
+			FetchItemOutput items = (FetchItemOutput) jaxb2FetchMarshaller.unmarshal(bgg.fetch(ThingType.BOARDGAME, id));
+
+			if (!CollectionUtils.isEmpty(items.getItems()))
 				return items.getItems().get(0);
-			}
 			throw new NoItemsFoundException();
 		} catch (XmlMappingException e) { 
 			throw new FetchException("While fetching id: " + id, e);
 		} catch (BggServiceException e) {
 			throw new FetchException("While fetching id: " + id, e);
+		}
+	}
+	
+	public ItemCollection fetchCollection(String ownerName) throws FetchException, NoItemsFoundException {
+		try {
+			ItemCollection collection = (ItemCollection) jaxb2CollectionMarshaller.unmarshal(bgg.fetchCollection(ownerName));
+			
+			if (!CollectionUtils.isEmpty(collection.getItems()))
+				return collection;
+			throw new NoItemsFoundException();
+		} catch (XmlMappingException e) {
+			throw new FetchException(String.format("While fetching %s's collection", ownerName), e);
+		} catch (BggServiceException e) {
+			throw new FetchException(String.format("While fetching %s's collection", ownerName), e);
 		}
 	}
 }

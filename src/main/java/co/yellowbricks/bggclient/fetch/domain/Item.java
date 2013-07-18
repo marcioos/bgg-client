@@ -11,7 +11,7 @@ import com.google.common.base.Objects;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
-public class FetchItem {
+public class Item {
 
 	@XmlAttribute(name = "type")
 	private String type;
@@ -111,8 +111,8 @@ public class FetchItem {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof FetchItem) {
-			FetchItem that = (FetchItem) obj;
+		if (obj instanceof Item) {
+			Item that = (Item) obj;
 			return Objects.equal(that.type, this.type)
 					&& Objects.equal(that.id, this.id)
 					&& Objects.equal(that.thumbnailUrl, this.thumbnailUrl)

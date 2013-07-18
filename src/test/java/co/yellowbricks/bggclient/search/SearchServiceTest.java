@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.config.SpringContext;
-import co.yellowbricks.bggclient.search.domain.SearchItems;
+import co.yellowbricks.bggclient.search.domain.SearchOutput;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringContext.class)
@@ -21,7 +21,7 @@ public class SearchServiceTest {
 	
 	@Test
 	public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
-		SearchItems items = searchService.search("dominion");
+		SearchOutput items = searchService.search("dominion");
 		
 		Assert.assertThat(items.getTotal(), CoreMatchers.is(27));
 	}

@@ -1,4 +1,4 @@
-package co.yellowbricks.bggclient.search.domain;
+package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
@@ -11,39 +11,33 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import com.google.common.base.Objects;
 
 @XmlRootElement(name = "items")
-public class SearchItems {
-	
-	@XmlAttribute(name = "total")
-	private int total;
+public class FetchItemOutput {
 
 	@XmlAttribute(name = "termsofuse")
 	private String termsOfUseUrl;
 	
 	@XmlElement(name = "item")
-	private List<SearchItem> items;
+	private List<Item> items;
 	
 	public String getTermsOfUseUrl() {
 		return termsOfUseUrl;
 	}
 	
-	public int getTotal() {
-		return total;
-	}
-	
-	public List<SearchItem> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 	
 	@Override
 	public int hashCode() {
-		return Objects.hashCode(total, termsOfUseUrl, items);
+		return Objects.hashCode(termsOfUseUrl, items);
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof SearchItems) {
-			SearchItems that = (SearchItems) obj;
-			return Objects.equal(that.total, this.total) && Objects.equal(that.termsOfUseUrl, this.termsOfUseUrl) && Objects.equal(that.items, this.items);
+		if (obj instanceof FetchItemOutput) {
+			FetchItemOutput that = (FetchItemOutput) obj;
+			return Objects.equal(that.getItems(), this.items)
+					&& Objects.equal(that.getTermsOfUseUrl(), this.getTermsOfUseUrl());
 		}
 		return false;
 	}

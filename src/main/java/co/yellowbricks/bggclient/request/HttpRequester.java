@@ -7,26 +7,20 @@ import java.util.concurrent.Future;
 
 import org.springframework.stereotype.Component;
 
-import co.yellowbricks.bggclient.common.domain.Thing;
-
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 import com.ning.http.client.Response;
 
 @Component
-public class RequestExecutor {
+public class HttpRequester {
 
-	public InputStream executeRequest(String url, Thing thing, ParameterAdder parameterAdder) throws BggServiceException {
+	public InputStream executeRequest(String url, ParameterAdder parameterAdder) throws BggServiceException {
 		AsyncHttpClient httpClient = new AsyncHttpClient();
 		try {
-			return executeRequest(parameterAdder.addParameters(prepareRequest(url, thing, httpClient)));
+			return executeRequest(parameterAdder.addParameters(httpClient.prepareGet(url)));
 		} finally {
 			httpClient.close();
 		}
-	}
-	
-	private BoundRequestBuilder prepareRequest(String url, Thing thing, AsyncHttpClient httpClient) {
-		return httpClient.prepareGet(url).addQueryParameter("type", thing.getType());
 	}
 	
 	private InputStream executeRequest(BoundRequestBuilder request) throws BggServiceException {
