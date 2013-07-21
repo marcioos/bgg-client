@@ -49,6 +49,15 @@ public class FetchServiceTest {
 	}
 	
 	@Test
+	public void collectionShouldContainBGGTermsOfUseUrl() throws FetchException, NoItemsFoundException {
+		String myName = "marcio_os";
+		
+		ItemCollection myCollection = fetchService.fetchCollection(myName);
+		
+		assertThat(myCollection.getTermsOfUseUrl(), is("http://boardgamegeek.com/xmlapi/termsofuse"));
+	}
+	
+	@Test
 	public void myCollectionShouldContainDominion() throws FetchException, NoItemsFoundException {
 		String myName = "marcio_os";
 		

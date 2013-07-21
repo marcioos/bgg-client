@@ -18,7 +18,7 @@ import co.yellowbricks.bggclient.request.BggServiceException;
 @Service
 public class FetchService {
 
-	@Inject @Fetch 
+	@Inject @FetchQualifier 
 	private Jaxb2Marshaller jaxb2FetchMarshaller;
 
 	@Inject @CollectionQualifier 

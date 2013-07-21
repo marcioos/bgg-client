@@ -8,10 +8,10 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 import co.yellowbricks.bggclient.fetch.CollectionQualifier;
-import co.yellowbricks.bggclient.fetch.Fetch;
+import co.yellowbricks.bggclient.fetch.FetchQualifier;
 import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
 import co.yellowbricks.bggclient.fetch.domain.ItemCollection;
-import co.yellowbricks.bggclient.search.Search;
+import co.yellowbricks.bggclient.search.SearchQualifier;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
 
 @Configuration
@@ -26,7 +26,7 @@ public class SpringContext {
         return ppc;
     }
     
-    @Bean @Search
+    @Bean @SearchQualifier
     public Jaxb2Marshaller jaxb2SearchMarshaller() {
     	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     	
@@ -34,7 +34,7 @@ public class SpringContext {
     	return jaxb2Marshaller;
     }
     
-    @Bean @Fetch
+    @Bean @FetchQualifier
     public Jaxb2Marshaller jaxb2FetchMarshaller() {
     	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     	

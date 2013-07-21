@@ -16,7 +16,7 @@ import co.yellowbricks.bggclient.search.domain.SearchOutput;
 @Service
 public class SearchService {
 	
-	@Inject @Search private Jaxb2Marshaller jaxb2Marshaller;
+	@Inject @SearchQualifier private Jaxb2Marshaller jaxb2Marshaller;
 	@Inject private BggService bgg;
 
 	public SearchOutput search(String query) throws SearchException, NoItemsFoundException {
