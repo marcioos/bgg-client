@@ -20,7 +20,7 @@ public class SearchOutput {
 	private String termsOfUseUrl;
 	
 	@XmlElement(name = "item")
-	private List<ThinItem> items;
+	private List<SearchItem> items;
 	
 	public String getTermsOfUseUrl() {
 		return termsOfUseUrl;
@@ -30,7 +30,7 @@ public class SearchOutput {
 		return total;
 	}
 	
-	public List<ThinItem> getItems() {
+	public List<SearchItem> getItems() {
 		return items;
 	}
 	

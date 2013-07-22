@@ -11,7 +11,7 @@ import com.google.common.base.Objects;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
-public class Item {
+public class FetchItem {
 
 	@XmlAttribute(name = "type")
 	private String type;
@@ -26,7 +26,7 @@ public class Item {
 	private String imageUrl;
 	
 	@XmlElement(name = "name")
-	private FetchedItemName name;
+	private FetchItemName name;
 	
 	@XmlElement(name = "description")
 	private String description;
@@ -68,7 +68,7 @@ public class Item {
 		return imageUrl;
 	}
 
-	public FetchedItemName getName() {
+	public FetchItemName getName() {
 		return name;
 	}
 
@@ -111,8 +111,8 @@ public class Item {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Item) {
-			Item that = (Item) obj;
+		if (obj instanceof FetchItem) {
+			FetchItem that = (FetchItem) obj;
 			return Objects.equal(that.type, this.type)
 					&& Objects.equal(that.id, this.id)
 					&& Objects.equal(that.thumbnailUrl, this.thumbnailUrl)
@@ -134,7 +134,7 @@ public class Item {
 		return ReflectionToStringBuilder.toString(this);
 	}
 
-	public static class FetchedItemName {
+	public static class FetchItemName {
 
 		@XmlAttribute(name = "type")
 		private String type;
@@ -164,8 +164,8 @@ public class Item {
 		
 		@Override
 		public boolean equals(Object obj) {
-			if (obj instanceof FetchedItemName) {
-				FetchedItemName that = (FetchedItemName) obj;
+			if (obj instanceof FetchItemName) {
+				FetchItemName that = (FetchItemName) obj;
 				return Objects.equal(that.type, this.type)
 						&& Objects.equal(that.sortIndex, this.sortIndex)
 						&& Objects.equal(that.value, this.value);

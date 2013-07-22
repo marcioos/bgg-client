@@ -10,7 +10,7 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import co.yellowbricks.bggclient.fetch.CollectionQualifier;
 import co.yellowbricks.bggclient.fetch.FetchQualifier;
 import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
-import co.yellowbricks.bggclient.fetch.domain.ItemCollection;
+import co.yellowbricks.bggclient.fetch.domain.UserCollection;
 import co.yellowbricks.bggclient.search.SearchQualifier;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
 
@@ -46,7 +46,7 @@ public class SpringContext {
     public Jaxb2Marshaller jaxb2CollectionMarshaller() {
     	Jaxb2Marshaller jaxb2Marshaller = new Jaxb2Marshaller();
     	
-    	jaxb2Marshaller.setClassesToBeBound(ItemCollection.class);
+    	jaxb2Marshaller.setClassesToBeBound(UserCollection.class);
     	return jaxb2Marshaller;
     }
 }

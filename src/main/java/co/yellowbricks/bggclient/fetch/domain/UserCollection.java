@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import com.google.common.base.Objects;
 
 @XmlRootElement(name = "items")
-public class ItemCollection {
+public class UserCollection {
 
 	@XmlAttribute(name = "totalitems")
 	private int totalItems;
@@ -39,8 +39,8 @@ public class ItemCollection {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof ItemCollection) {
-			ItemCollection that = (ItemCollection) obj;
+		if (obj instanceof UserCollection) {
+			UserCollection that = (UserCollection) obj;
 			return Objects.equal(totalItems, that.totalItems)
 					&& Objects.equal(termsOfUseUrl, that.termsOfUseUrl)
 					&& Objects.equal(items, that.items);

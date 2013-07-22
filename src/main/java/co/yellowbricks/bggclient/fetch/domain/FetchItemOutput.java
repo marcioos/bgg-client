@@ -17,13 +17,13 @@ public class FetchItemOutput {
 	private String termsOfUseUrl;
 	
 	@XmlElement(name = "item")
-	private List<Item> items;
+	private List<FetchItem> items;
 	
 	public String getTermsOfUseUrl() {
 		return termsOfUseUrl;
 	}
 	
-	public List<Item> getItems() {
+	public List<FetchItem> getItems() {
 		return items;
 	}
 	

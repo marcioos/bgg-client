@@ -9,9 +9,9 @@ import org.springframework.util.CollectionUtils;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.domain.ThingType;
-import co.yellowbricks.bggclient.fetch.domain.Item;
+import co.yellowbricks.bggclient.fetch.domain.FetchItem;
 import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
-import co.yellowbricks.bggclient.fetch.domain.ItemCollection;
+import co.yellowbricks.bggclient.fetch.domain.UserCollection;
 import co.yellowbricks.bggclient.request.BggService;
 import co.yellowbricks.bggclient.request.BggServiceException;
 
@@ -27,7 +27,7 @@ public class FetchService {
 	@Inject
 	private BggService bgg;
 	
-	public Item fetch(int id) throws FetchException, NoItemsFoundException {
+	public FetchItem fetch(int id) throws FetchException, NoItemsFoundException {
 		try {
 			FetchItemOutput items = (FetchItemOutput) jaxb2FetchMarshaller.unmarshal(bgg.fetch(ThingType.BOARDGAME, id));
 
@@ -41,9 +41,9 @@ public class FetchService {
 		}
 	}
 	
-	public ItemCollection fetchCollection(String ownerName) throws FetchException, NoItemsFoundException {
+	public UserCollection fetchCollection(String ownerName) throws FetchException, NoItemsFoundException {
 		try {
-			ItemCollection collection = (ItemCollection) jaxb2CollectionMarshaller.unmarshal(bgg.fetchCollection(ownerName));
+			UserCollection collection = (UserCollection) jaxb2CollectionMarshaller.unmarshal(bgg.fetchCollection(ownerName));
 			
 			if (!CollectionUtils.isEmpty(collection.getItems()))
 				return collection;
