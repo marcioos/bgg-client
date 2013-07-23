@@ -5,12 +5,12 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
-import com.google.common.base.Objects;
-
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import co.yellowbricks.bggclient.common.domain.Value;
 
+@Getter @EqualsAndHashCode @ToString
 public class FetchItem {
 
 	@XmlAttribute(name = "type")
@@ -51,89 +51,8 @@ public class FetchItem {
 	
 	@XmlElement(name = "link")
 	private List<Link> links;
-	
-	public String getType() {
-		return type;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getThumbnailUrl() {
-		return thumbnailUrl;
-	}
-
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public FetchItemName getName() {
-		return name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public Value getYear() {
-		return year;
-	}
-
-	public Value getMinPlayers() {
-		return minPlayers;
-	}
-
-	public Value getMaxPlayers() {
-		return maxPlayers;
-	}
-
-	public Value getMinAge() {
-		return minAge;
-	}
-
-	public Value getPlayingTime() {
-		return playingTime;
-	}
-
-	public List<Poll> getPolls() {
-		return polls;
-	}
-
-	public List<Link> getLinks() {
-		return links;
-	}
-	
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(type, id, thumbnailUrl, imageUrl, name, description, year, minAge, maxPlayers, playingTime, polls, links);
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof FetchItem) {
-			FetchItem that = (FetchItem) obj;
-			return Objects.equal(that.type, this.type)
-					&& Objects.equal(that.id, this.id)
-					&& Objects.equal(that.thumbnailUrl, this.thumbnailUrl)
-					&& Objects.equal(that.imageUrl, this.imageUrl)
-					&& Objects.equal(that.name, this.name)
-					&& Objects.equal(that.description, this.description)
-					&& Objects.equal(that.year, this.year)
-					&& Objects.equal(that.minAge, this.minAge)
-					&& Objects.equal(that.maxPlayers, this.maxPlayers)
-					&& Objects.equal(that.playingTime, this.playingTime)
-					&& Objects.equal(that.polls, this.polls)
-					&& Objects.equal(that.links, this.links);
-		}
-		return false;
-	}
-	
-	@Override
-	public String toString() {
-		return ReflectionToStringBuilder.toString(this);
-	}
-
+		
+	@Getter @EqualsAndHashCode
 	public static class FetchItemName {
 
 		@XmlAttribute(name = "type")
@@ -144,35 +63,7 @@ public class FetchItem {
 		
 		@XmlAttribute(name = "value")
 		private String value;
-		
-		public String getType() {
-			return type;
-		}
-
-		public int getSortIndex() {
-			return sortIndex;
-		}
-
-		public String getValue() {
-			return value;
-		}
-		
-		@Override
-		public int hashCode() {
-			return Objects.hashCode(type, sortIndex, value);
-		}
-		
-		@Override
-		public boolean equals(Object obj) {
-			if (obj instanceof FetchItemName) {
-				FetchItemName that = (FetchItemName) obj;
-				return Objects.equal(that.type, this.type)
-						&& Objects.equal(that.sortIndex, this.sortIndex)
-						&& Objects.equal(that.value, this.value);
-			}
-			return false;
-		}
-		
+							
 		@Override
 		public String toString() {
 			return value;

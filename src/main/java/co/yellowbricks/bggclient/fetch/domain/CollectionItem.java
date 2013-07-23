@@ -3,6 +3,11 @@ package co.yellowbricks.bggclient.fetch.domain;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter @EqualsAndHashCode @ToString
 public class CollectionItem {
 
 	@XmlAttribute(name = "objecttype")
@@ -28,35 +33,4 @@ public class CollectionItem {
 	
 	@XmlElement(name = "thumbnail")
 	private String thumbnailUrl;
-	
-	public String getThumbnailUrl() {
-		return thumbnailUrl;
-	}
-	
-	public int getId() {
-		return id;
-	}
-	
-	public String getSubtype() {
-		return subtype;
-	}
-	
-	public long getCollectionId() {
-		return collectionId;
-	}
-
-	public String getName() {
-		return name;
-	}
-	
-	public String getYear() {
-		return year;
-	}
-	public String getImageUrl() {
-		return imageUrl;
-	}
-
-	public String getType() {
-		return type;
-	}
 }
