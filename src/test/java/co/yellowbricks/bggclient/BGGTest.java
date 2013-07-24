@@ -7,7 +7,6 @@ import org.junit.Test;
 import co.yellowbricks.bggclient.BGG;
 
 public class BGGTest {
-
 	@Test
 	public void shouldGetSearchService() {
 		assertNotNull(BGG.getSearchService());
@@ -17,5 +16,4 @@ public class BGGTest {
 	public void shouldGetFetchService() {
 		assertNotNull(BGG.getFetchService());
 	}
-
 }
