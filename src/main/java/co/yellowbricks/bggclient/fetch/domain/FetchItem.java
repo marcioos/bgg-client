@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,7 +27,7 @@ public class FetchItem {
 	private String imageUrl;
 	
 	@XmlElement(name = "name")
-	private FetchItemName name;
+	private List<FetchItemName> names;
 	
 	@XmlElement(name = "description")
 	private String description;
@@ -51,6 +52,18 @@ public class FetchItem {
 	
 	@XmlElement(name = "link")
 	private List<Link> links;
+	
+	@XmlTransient
+	private String name;
+	
+	@XmlTransient
+	public String getName() {
+	    if (name == null)
+	        for (FetchItemName itemName : names) if (itemName.type.equals("primary")) name = itemName.value;
+	    if (name == null)
+            name = names.get(0).value;
+	    return name;
+	}
 		
 	@Getter @EqualsAndHashCode
 	public static class FetchItemName {

@@ -31,8 +31,17 @@ public class FetchServiceTest {
 		
 		FetchItem item = fetchService.fetch(dieMacherId);
 
-		assertThat(item.getName().getValue(), containsString("Macher"));
+		assertThat(item.getName(), containsString("Macher"));
 	}
+	
+   @Test
+    public void shouldFetchAgricolaXDeck() throws FetchException, NoItemsFoundException {
+        int agricolaXDeckId = 38733;
+        
+        FetchItem item = fetchService.fetch(agricolaXDeckId);
+
+        assertThat(item.getName(), containsString("Agricola"));
+    }
 	
 	@Test(expected = NoItemsFoundException.class)
 	public void shouldFindNoItems() throws FetchException, NoItemsFoundException {

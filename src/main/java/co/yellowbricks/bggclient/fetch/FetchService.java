@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
-import co.yellowbricks.bggclient.common.domain.ThingType;
 import co.yellowbricks.bggclient.fetch.domain.FetchItem;
 import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
 import co.yellowbricks.bggclient.fetch.domain.UserCollection;
@@ -29,7 +28,7 @@ public class FetchService {
 	
 	public FetchItem fetch(int id) throws FetchException, NoItemsFoundException {
 		try {
-			FetchItemOutput items = (FetchItemOutput) jaxb2FetchMarshaller.unmarshal(bgg.fetch(ThingType.BOARDGAME, id));
+			FetchItemOutput items = (FetchItemOutput) jaxb2FetchMarshaller.unmarshal(bgg.fetch(id));
 
 			if (!CollectionUtils.isEmpty(items.getItems()))
 				return items.getItems().get(0);

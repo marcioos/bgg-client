@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
-import co.yellowbricks.bggclient.common.domain.ThingType;
 import co.yellowbricks.bggclient.request.BggService;
 import co.yellowbricks.bggclient.request.BggServiceException;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
@@ -21,7 +20,7 @@ public class SearchService {
 
 	public SearchOutput search(String query) throws SearchException, NoItemsFoundException {
 		try {
-			SearchOutput items = (SearchOutput) jaxb2Marshaller.unmarshal(bgg.search(ThingType.BOARDGAME, query));
+			SearchOutput items = (SearchOutput) jaxb2Marshaller.unmarshal(bgg.search(query));
 			
 			if (!CollectionUtils.isEmpty(items.getItems()))
 				return items;
