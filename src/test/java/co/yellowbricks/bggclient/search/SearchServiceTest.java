@@ -23,7 +23,7 @@ public class SearchServiceTest {
 	public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
 		SearchOutput items = searchService.search("dominion");
 		
-		Assert.assertThat(items.getTotal(), CoreMatchers.is(27));
+		Assert.assertThat(items.getTotal(), CoreMatchers.is(67));
 	}
 	
 	@Test(expected = NoItemsFoundException.class)
