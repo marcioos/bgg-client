@@ -15,14 +15,10 @@
         <java.version>1.6</java.version>
         
         <!-- Spring -->
-        <spring.version>3.2.3.RELEASE</spring.version>
+        <spring.version>3.2.4.RELEASE</spring.version>
         
         <!-- DI -->
         <javax.inject.version>1</javax.inject.version>
-
-        <!-- Logging -->
-        <org.slf4j-version>1.7.5</org.slf4j-version>
-        <ch.qos.logback-version>1.0.13</ch.qos.logback-version>
 
         <!-- Testing -->
         <junit.version>4.11</junit.version>
@@ -36,8 +32,6 @@
         
         <!-- Lombok -->
         <lombok.version>0.12.0</lombok.version>
-        
-        <apache.commons.lang.version>3.1</apache.commons.lang.version>
 
         <!-- Maven Plugins -->
         <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
@@ -68,19 +62,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
-            <exclusions>
-                <!-- Exclude Commons Logging in favor of SLF4j -->
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-oxm</artifactId>
-			<version>${spring.version}</version>
-		</dependency>        
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-oxm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>        
         
         <!-- DI -->
         <dependency>
@@ -89,25 +76,6 @@
             <version>${javax.inject.version}</version>
         </dependency>
     
-        <!-- Logging -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${org.slf4j-version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>jcl-over-slf4j</artifactId>
-            <version>${org.slf4j-version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <version>${ch.qos.logback-version}</version>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -129,23 +97,18 @@
         </dependency>        
 
         <!-- HTTP Client -->
-   		<dependency>
-			<groupId>com.ning</groupId>
-			<artifactId>async-http-client</artifactId>
-			<version>${async-http-client.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>${guava.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>${apache.commons.lang.version}</version>
-		</dependency>
-		<dependency>
+	<dependency>
+		<groupId>com.ning</groupId>
+		<artifactId>async-http-client</artifactId>
+		<version>${async-http-client.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>${guava.version}</version>
+	</dependency>
+	<dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
