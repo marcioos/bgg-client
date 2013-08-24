@@ -53,9 +53,9 @@ public final class BGG {
                 return collection;
             throw new NoItemsFoundException();
         } catch (BggServiceException e) {
-            throw new FetchException(String.format("While fetching %s's collection", ownerName), e);
+            throw new FetchException("While fetching %s's collection " + ownerName, e);
         } catch (JAXBException e) {
-            throw new FetchException(String.format("While fetching %s's collection", ownerName), e);
+            throw new FetchException("While fetching %s's collection " + ownerName, e);
         }
     }
 }

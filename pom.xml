@@ -28,15 +28,15 @@
     </properties>
 
     <dependencies>
-        <!-- Test -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
+    <!-- Test -->
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+    </dependency>
 
-        <!-- HTTP Client -->
+    <!-- HTTP Client -->
 	<dependency>
 		<groupId>com.ning</groupId>
 		<artifactId>async-http-client</artifactId>
