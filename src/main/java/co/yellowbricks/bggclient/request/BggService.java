@@ -45,7 +45,17 @@ public enum BggService {
 	}
 	
 	private BoundRequestBuilder addThingTypesToQuery(BoundRequestBuilder requestBuilder, final ThingType... thingTypes) {
-        for (ThingType type : thingTypes) requestBuilder.addQueryParameter("type", type.getKey());
+	    if (thingTypes != null)
+	        return requestBuilder.addQueryParameter("type", getTypesQueryString(thingTypes));
         return requestBuilder;
+    }
+
+    private String getTypesQueryString(ThingType... thingTypes) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < thingTypes.length; i++) {
+            builder.append(thingTypes[i].getKey());
+            if (i < (thingTypes.length - 1)) builder.append(",");
+        }
+        return builder.toString();
     }
 }
