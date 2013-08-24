@@ -14,68 +14,20 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
         
-        <!-- Spring -->
-        <spring.version>3.2.4.RELEASE</spring.version>
-        
-        <!-- DI -->
-        <javax.inject.version>1</javax.inject.version>
-
         <!-- Testing -->
         <junit.version>4.11</junit.version>
-        <mockito.version>1.9.5</mockito.version>
         
         <!-- HTTP Client -->
         <async-http-client.version>1.7.18</async-http-client.version>
-        
-        <!-- Guava -->
-        <guava.version>14.0.1</guava.version>
         
         <!-- Lombok -->
         <lombok.version>0.12.0</lombok.version>
 
         <!-- Maven Plugins -->
-        <maven.compiler.plugin.version>2.3.2</maven.compiler.plugin.version>
-        <maven.resources.plugin.version>2.5</maven.resources.plugin.version>
+        <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>java.net2</id>
-            <name>Repository hosting the jee6 artifacts</name>
-            <url>http://download.java.net/maven/2</url>
-        </repository>
-        <repository>
-            <id>sonatype-oss-repository</id>
-            <url>https://oss.sonatype.org/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
     <dependencies>
-        <!-- Spring -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-	<dependency>
-		<groupId>org.springframework</groupId>
-		<artifactId>spring-oxm</artifactId>
-		<version>${spring.version}</version>
-	</dependency>        
-        
-        <!-- DI -->
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>${javax.inject.version}</version>
-        </dependency>
-    
         <!-- Test -->
         <dependency>
             <groupId>junit</groupId>
@@ -83,18 +35,6 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <version>${mockito.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-            <scope>test</scope>
-        </dependency>        
 
         <!-- HTTP Client -->
 	<dependency>
@@ -102,12 +42,8 @@
 		<artifactId>async-http-client</artifactId>
 		<version>${async-http-client.version}</version>
 	</dependency>
-	
-	<dependency>
-		<groupId>com.google.guava</groupId>
-		<artifactId>guava</artifactId>
-		<version>${guava.version}</version>
-	</dependency>
+
+	<!-- Lombok -->
 	<dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -124,27 +60,6 @@
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>install</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>sources</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven.resources.plugin.version}</version>
-                <configuration>
-                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>

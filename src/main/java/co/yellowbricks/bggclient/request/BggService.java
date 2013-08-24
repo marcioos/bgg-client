@@ -1,30 +1,21 @@
 package co.yellowbricks.bggclient.request;
 
-import javax.inject.Inject;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
-
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 
-@Component
-public class BggService {
+public enum BggService {
 	
-	@Value("${SEARCH_URL}")
-	private String searchURL;
+	INSTANCE;
 
-	@Value("${FETCH_URL}")
-	private String fetchURL;
-	
-	@Value("${COLLECTION_URL}")
-	private String collectionURL;
-	
-	@Inject private HttpRequester httpRequester;
+	private static final String BASE_URL = "http://www.boardgamegeek.com/xmlapi2";
+	private static final String SEARCH_URL = BASE_URL + "/search";
+	private static final String FETCH_URL = BASE_URL + "/thing";
+	private static final String COLLECTION_URL = BASE_URL + "/collection";
 	
 	public Source search(final String query) throws BggServiceException {
-		return new StreamSource(httpRequester.executeRequest(searchURL, new ParameterAdder() {
+		return new StreamSource(HttpRequester.INSTANCE.executeRequest(SEARCH_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
 				return requestBuilder.addQueryParameter("query", query);
@@ -33,7 +24,7 @@ public class BggService {
 	}
 	
 	public Source fetch(final int id) throws BggServiceException {
-		return new StreamSource(httpRequester.executeRequest(fetchURL, new ParameterAdder() {
+		return new StreamSource(HttpRequester.INSTANCE.executeRequest(FETCH_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
 				return requestBuilder.addQueryParameter("id", String.valueOf(id));
@@ -42,7 +33,7 @@ public class BggService {
 	}
 	
 	public Source fetchCollection(final String ownerName) throws BggServiceException {
-		return new StreamSource(httpRequester.executeRequest(collectionURL, new ParameterAdder() {
+		return new StreamSource(HttpRequester.INSTANCE.executeRequest(COLLECTION_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
 				return requestBuilder.addQueryParameter("username", ownerName);

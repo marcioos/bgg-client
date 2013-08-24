@@ -5,16 +5,15 @@ import java.io.InputStream;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import org.springframework.stereotype.Component;
-
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 import com.ning.http.client.Response;
 
-@Component
-public class HttpRequester {
+public enum HttpRequester {
+    
+    INSTANCE;
 
-	public InputStream executeRequest(String url, ParameterAdder parameterAdder) throws BggServiceException {
+    public InputStream executeRequest(String url, ParameterAdder parameterAdder) throws BggServiceException {
 		AsyncHttpClient httpClient = new AsyncHttpClient();
 		try {
 			return executeRequest(parameterAdder.addParameters(httpClient.prepareGet(url)));
