@@ -3,6 +3,7 @@ package co.yellowbricks.bggclient;
 import javax.xml.bind.JAXBException;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
+import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.fetch.FetchException;
 import co.yellowbricks.bggclient.fetch.domain.FetchItem;
 import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
@@ -17,9 +18,9 @@ public final class BGG {
     private BGG() {
     }
 
-    public static SearchOutput search(String query) throws SearchException, NoItemsFoundException {
+    public static SearchOutput search(String query, ThingType... thingTypes) throws SearchException, NoItemsFoundException {
         try {
-            SearchOutput items = (SearchOutput) SearchOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.search(query));
+            SearchOutput items = (SearchOutput) SearchOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.search(query, thingTypes));
 
             if (items.getItems() != null && !items.getItems().isEmpty())
                 return items;
@@ -31,9 +32,9 @@ public final class BGG {
         }
     }
 
-    public static FetchItem fetch(int id) throws FetchException, NoItemsFoundException {
+    public static FetchItem fetch(int id, ThingType... thingTypes) throws FetchException, NoItemsFoundException {
         try {
-            FetchItemOutput items = (FetchItemOutput) FetchItemOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.fetch(id));
+            FetchItemOutput items = (FetchItemOutput) FetchItemOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.fetch(id, thingTypes));
 
             if (items.getItems() != null && !items.getItems().isEmpty())
                 return items.getItems().get(0);

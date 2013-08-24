@@ -8,6 +8,7 @@ import static org.junit.Assert.fail;
 import org.junit.Test;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
+import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.fetch.FetchException;
 import co.yellowbricks.bggclient.fetch.domain.CollectionItem;
 import co.yellowbricks.bggclient.fetch.domain.FetchItem;
@@ -19,7 +20,7 @@ public class BGGFetchTest {
     public void shouldFetchDieMacher() throws FetchException, NoItemsFoundException {
         int dieMacherId = 1;
         
-        FetchItem item = BGG.fetch(dieMacherId);
+        FetchItem item = BGG.fetch(dieMacherId, ThingType.BOARDGAME);
 
         assertThat(item.getName(), containsString("Macher"));
     }
@@ -28,7 +29,7 @@ public class BGGFetchTest {
     public void shouldFetchAgricolaXDeck() throws FetchException, NoItemsFoundException {
         int agricolaXDeckId = 38733;
         
-        FetchItem item = BGG.fetch(agricolaXDeckId);
+        FetchItem item = BGG.fetch(agricolaXDeckId, ThingType.BOARDGAME_EXPANSION);
 
         assertThat(item.getName(), containsString("Agricola"));
     }

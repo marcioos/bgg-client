@@ -3,6 +3,8 @@ package co.yellowbricks.bggclient.request;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
+import co.yellowbricks.bggclient.common.ThingType;
+
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 
 public enum BggService {
@@ -14,20 +16,21 @@ public enum BggService {
 	private static final String FETCH_URL = BASE_URL + "/thing";
 	private static final String COLLECTION_URL = BASE_URL + "/collection";
 	
-	public Source search(final String query) throws BggServiceException {
+	public Source search(final String query, final ThingType... thingTypes) throws BggServiceException {
 		return new StreamSource(HttpRequester.INSTANCE.executeRequest(SEARCH_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
-				return requestBuilder.addQueryParameter("query", query);
+			    addThingTypesToQuery(requestBuilder, thingTypes);
+				return addThingTypesToQuery(requestBuilder, thingTypes).addQueryParameter("query", query);
 			}
 		}));
 	}
 	
-	public Source fetch(final int id) throws BggServiceException {
+	public Source fetch(final int id, final ThingType... thingTypes) throws BggServiceException {
 		return new StreamSource(HttpRequester.INSTANCE.executeRequest(FETCH_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
-				return requestBuilder.addQueryParameter("id", String.valueOf(id));
+				return addThingTypesToQuery(requestBuilder, thingTypes).addQueryParameter("id", String.valueOf(id));
 			}
 		}));
 	}
@@ -40,4 +43,9 @@ public enum BggService {
 			}
 		}));
 	}
+	
+	private BoundRequestBuilder addThingTypesToQuery(BoundRequestBuilder requestBuilder, final ThingType... thingTypes) {
+        for (ThingType type : thingTypes) requestBuilder.addQueryParameter("type", type.getKey());
+        return requestBuilder;
+    }
 }
