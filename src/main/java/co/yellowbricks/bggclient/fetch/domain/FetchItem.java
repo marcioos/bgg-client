@@ -57,6 +57,9 @@ public class FetchItem {
 	private String name;
 	
 	@XmlTransient
+	private SuggestedNumPlayersPoll suggestedNumPlayersPoll;
+	
+	@XmlTransient
 	public String getName() {
 	    if (name == null)
 	        for (FetchItemName itemName : names) if (itemName.type.equals("primary")) name = itemName.value;
@@ -64,6 +67,24 @@ public class FetchItem {
             name = names.get(0).value;
 	    return name;
 	}
+	
+	@XmlTransient
+	public String getBestNumberOfPlayers() {
+	    if (getSuggestedNumPlayersPoll() == null) return "unknown";
+	    return getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
+	}
+	
+	@XmlTransient
+    public String getWorstNumberOfPlayers() {
+        if (getSuggestedNumPlayersPoll() == null) return "unknown";
+        return getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostNotRecommendedVotes();
+    }
+
+    private SuggestedNumPlayersPoll getSuggestedNumPlayersPoll() {
+        if (suggestedNumPlayersPoll == null)
+            for (Poll poll : polls) if (poll.isSuggestedNumPlayersPoll()) suggestedNumPlayersPoll = poll.asSuggestedNumPlayersPoll();
+	    return suggestedNumPlayersPoll;
+    }
 		
 	@Getter @EqualsAndHashCode
 	public static class FetchItemName {
