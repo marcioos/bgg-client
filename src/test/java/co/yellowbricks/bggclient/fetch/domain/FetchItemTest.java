@@ -32,4 +32,11 @@ public class FetchItemTest {
         
         Assert.assertThat(dieMacher.getMechanics(), CoreMatchers.equalTo(Arrays.asList("Auction/Bidding")));
     }
+    
+    @Test
+    public void shouldGetDieMacherDesigners() throws FetchException, NoItemsFoundException {
+        FetchItem dieMacher = BGG.fetch(1);
+        
+        Assert.assertThat(dieMacher.getDesigners(), CoreMatchers.equalTo(Arrays.asList("Karl-Heinz Schmiel")));
+    }
 }

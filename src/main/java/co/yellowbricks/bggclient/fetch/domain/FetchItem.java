@@ -67,6 +67,9 @@ public class FetchItem {
 	private List<String> mechanics;
 	
 	@XmlTransient
+	private List<String> designers;
+	
+	@XmlTransient
 	public String getName() {
 	    if (name == null) defineName();
 	    return name;
@@ -82,6 +85,12 @@ public class FetchItem {
 	public List<String> getMechanics() {
 	    if (mechanics == null) mechanics = createLinkDataList("boardgamemechanic");
 	    return mechanics;
+	}
+	
+	@XmlTransient
+	public List<String> getDesigners() {
+	    if (designers == null) designers = createLinkDataList("boardgamedesigner");
+	    return designers;
 	}
 
 	@XmlTransient
