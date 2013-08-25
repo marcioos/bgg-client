@@ -16,12 +16,4 @@ public class FetchItemTest {
         
         Assert.assertThat(dieMacher.getBestNumberOfPlayers(), CoreMatchers.equalTo("5"));
     }
-    
-    @Test
-    public void shouldGetWorstNumberOfPlayersForDieMacher() throws FetchException, NoItemsFoundException {
-        FetchItem dieMacher = BGG.fetch(1);
-        
-        Assert.assertThat(dieMacher.getWorstNumberOfPlayers(), CoreMatchers.equalTo("2"));
-    }
-
 }

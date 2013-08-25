@@ -74,12 +74,6 @@ public class FetchItem {
 	    return getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
 	}
 	
-	@XmlTransient
-    public String getWorstNumberOfPlayers() {
-        if (getSuggestedNumPlayersPoll() == null) return "unknown";
-        return getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostNotRecommendedVotes();
-    }
-
     private SuggestedNumPlayersPoll getSuggestedNumPlayersPoll() {
         if (suggestedNumPlayersPoll == null)
             for (Poll poll : polls) if (poll.isSuggestedNumPlayersPoll()) suggestedNumPlayersPoll = poll.asSuggestedNumPlayersPoll();
