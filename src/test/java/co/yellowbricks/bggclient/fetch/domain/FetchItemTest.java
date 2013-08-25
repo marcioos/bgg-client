@@ -1,5 +1,7 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
+import java.util.Arrays;
+
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,5 +17,19 @@ public class FetchItemTest {
         FetchItem dieMacher = BGG.fetch(1);
         
         Assert.assertThat(dieMacher.getBestNumberOfPlayers(), CoreMatchers.equalTo("5"));
+    }
+    
+    @Test
+    public void shouldGetDieMacherCategories() throws FetchException, NoItemsFoundException {
+        FetchItem dieMacher = BGG.fetch(1);
+        
+        Assert.assertThat(dieMacher.getCategories(), CoreMatchers.equalTo(Arrays.asList("Economic", "Political")));
+    }
+    
+    @Test
+    public void shouldGetDieMacherMechanics() throws FetchException, NoItemsFoundException {
+        FetchItem dieMacher = BGG.fetch(1);
+        
+        Assert.assertThat(dieMacher.getMechanics(), CoreMatchers.equalTo(Arrays.asList("Auction/Bidding")));
     }
 }

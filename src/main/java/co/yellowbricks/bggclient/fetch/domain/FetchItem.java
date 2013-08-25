@@ -1,5 +1,6 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAttribute;
@@ -55,31 +56,59 @@ public class FetchItem {
 	
 	@XmlTransient
 	private String name;
+
+	@XmlTransient
+	private String bestNumberOfPlayers;
 	
 	@XmlTransient
-	private SuggestedNumPlayersPoll suggestedNumPlayersPoll;
+	private List<String> categories;
+	
+	@XmlTransient
+	private List<String> mechanics;
 	
 	@XmlTransient
 	public String getName() {
-	    if (name == null)
-	        for (FetchItemName itemName : names) if (itemName.type.equals("primary")) name = itemName.value;
-	    if (name == null)
-            name = names.get(0).value;
+	    if (name == null) defineName();
 	    return name;
 	}
 	
 	@XmlTransient
+	public List<String> getCategories() {
+	    if (categories == null) categories = createLinkDataList("boardgamecategory");
+	    return categories;
+	}
+
+	@XmlTransient
+	public List<String> getMechanics() {
+	    if (mechanics == null) mechanics = createLinkDataList("boardgamemechanic");
+	    return mechanics;
+	}
+
+	@XmlTransient
 	public String getBestNumberOfPlayers() {
-	    if (getSuggestedNumPlayersPoll() == null) return "unknown";
-	    return getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
+	    if (bestNumberOfPlayers == null) {
+    	    if (getSuggestedNumPlayersPoll() == null) bestNumberOfPlayers = "unknown";
+    	    else bestNumberOfPlayers = getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
+	    }
+	    return bestNumberOfPlayers;
 	}
 	
     private SuggestedNumPlayersPoll getSuggestedNumPlayersPoll() {
-        if (suggestedNumPlayersPoll == null)
-            for (Poll poll : polls) if (poll.isSuggestedNumPlayersPoll()) suggestedNumPlayersPoll = poll.asSuggestedNumPlayersPoll();
-	    return suggestedNumPlayersPoll;
+        for (Poll poll : polls) if (poll.isSuggestedNumPlayersPoll()) return poll.asSuggestedNumPlayersPoll();
+	    return null;
     }
-		
+
+    private void defineName() {
+        for (FetchItemName itemName : names) if (itemName.type.equals("primary")) name = itemName.value;
+        if (name == null) name = names.get(0).value;
+    }
+
+    private List<String> createLinkDataList(String linkType) {
+        List<String> linkDataList = new LinkedList<String>();
+        for (Link link : links) if (link.getType().equals(linkType)) linkDataList.add(link.getValue());
+        return linkDataList;
+    }
+
 	@Getter @EqualsAndHashCode
 	public static class FetchItemName {
 
