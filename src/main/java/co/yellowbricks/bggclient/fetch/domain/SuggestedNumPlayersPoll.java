@@ -34,12 +34,15 @@ public class SuggestedNumPlayersPoll {
 
     private Map<String, Integer> createSuggestedNumPlayersVoteMap() {
         Map<String, Integer> suggestedNumPlayersVoteMap = new LinkedHashMap<String, Integer>();
-        for (Results results : poll.getResultsList())
+        if (poll.getResultsList() == null) return suggestedNumPlayersVoteMap;
+        for (Results results : poll.getResultsList()) {
+            if (results.getResults() == null) continue;
             for (Result result : results.getResults())
                 if (result.getValue().equals("Best")) {
                     suggestedNumPlayersVoteMap.put(results.getNumPlayers(), result.getNumVotes());
                     continue;
                 }
+        }
         return suggestedNumPlayersVoteMap;
     }
 }

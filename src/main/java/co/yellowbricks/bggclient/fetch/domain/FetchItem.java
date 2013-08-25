@@ -98,6 +98,7 @@ public class FetchItem {
 	    if (bestNumberOfPlayers == null) {
     	    if (getSuggestedNumPlayersPoll() == null) bestNumberOfPlayers = "unknown";
     	    else bestNumberOfPlayers = getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
+    	    if (bestNumberOfPlayers == null) bestNumberOfPlayers = "unknown";
 	    }
 	    return bestNumberOfPlayers;
 	}
