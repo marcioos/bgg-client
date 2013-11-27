@@ -1,18 +1,17 @@
 package co.yellowbricks.bggclient;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
-import org.junit.Test;
-
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.fetch.FetchException;
 import co.yellowbricks.bggclient.fetch.domain.CollectionItem;
 import co.yellowbricks.bggclient.fetch.domain.FetchItem;
 import co.yellowbricks.bggclient.fetch.domain.UserCollection;
+import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 public class BGGFetchTest {
 
@@ -45,7 +44,7 @@ public class BGGFetchTest {
         
         UserCollection myCollection = BGG.fetchCollection(myName);
         
-        assertThat(myCollection.getTotalItems(), is(18));
+        assertThat(myCollection.getTotalItems(), is(13));
     }
     
     @Test

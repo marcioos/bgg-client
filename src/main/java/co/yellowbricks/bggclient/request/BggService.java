@@ -1,11 +1,10 @@
 package co.yellowbricks.bggclient.request;
 
+import co.yellowbricks.bggclient.common.ThingType;
+import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
+
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
-
-import co.yellowbricks.bggclient.common.ThingType;
-
-import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
 
 public enum BggService {
 	
@@ -39,7 +38,7 @@ public enum BggService {
 		return new StreamSource(HttpRequester.INSTANCE.executeRequest(COLLECTION_URL, new ParameterAdder() {
 			@Override
 			public BoundRequestBuilder addParameters(BoundRequestBuilder requestBuilder) {
-				return requestBuilder.addQueryParameter("username", ownerName);
+				return requestBuilder.addQueryParameter("username", ownerName).addQueryParameter("own", "1");
 			}
 		}));
 	}
