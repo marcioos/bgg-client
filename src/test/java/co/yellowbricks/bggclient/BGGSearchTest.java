@@ -16,20 +16,20 @@ public class BGGSearchTest {
     public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
         SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME);
 
-        Assert.assertThat(items.getTotal(), CoreMatchers.is(28));
+        Assert.assertThat(items.getTotal(), CoreMatchers.is(29));
     }
 
     @Test(expected = NoItemsFoundException.class)
     public void shouldFindNoItems() throws SearchException, NoItemsFoundException {
         BGG.search("a game that should not exist");
     }
-    
+
     @Test
     public void searchBoardgamesShouldReturnExpansion() throws SearchException, NoItemsFoundException {
         int agricolaXDeckId = 38733;
-        
+
         SearchOutput items = BGG.search("agricola", ThingType.BOARDGAME);
-        
+
         for (SearchItem item : items.getItems()) if (item.getId() == agricolaXDeckId) return;
         Assert.fail("SearchOutput does not contain Agricola X-Deck id");
     }

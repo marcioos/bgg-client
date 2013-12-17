@@ -1,5 +1,7 @@
 package co.yellowbricks.bggclient;
 
+import java.util.Collection;
+
 import javax.xml.bind.JAXBException;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
@@ -32,17 +34,17 @@ public final class BGG {
         }
     }
 
-    public static FetchItem fetch(int id, ThingType... thingTypes) throws FetchException, NoItemsFoundException {
+    public static Collection<FetchItem> fetch(Collection<Integer> ids, ThingType... thingTypes) throws FetchException, NoItemsFoundException {
         try {
-            FetchItemOutput items = (FetchItemOutput) FetchItemOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.fetch(id, thingTypes));
+            FetchItemOutput items = (FetchItemOutput) FetchItemOutput.UNMARSHALLER.unmarshal(BggService.INSTANCE.fetch(ids, thingTypes));
 
             if (items.getItems() != null && !items.getItems().isEmpty())
-                return items.getItems().get(0);
+                return items.getItems();
             throw new NoItemsFoundException();
         } catch (BggServiceException e) {
-            throw new FetchException("While fetching id: " + id, e);
+            throw new FetchException("While fetching ids: " + ids, e);
         } catch (JAXBException e) {
-            throw new FetchException("While fetching id: " + id, e);
+            throw new FetchException("While fetching ids: " + ids, e);
         }
     }
 
