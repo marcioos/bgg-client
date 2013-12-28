@@ -9,14 +9,18 @@ import java.util.concurrent.TimeoutException;
 
 import com.ning.http.client.AsyncHttpClient;
 import com.ning.http.client.AsyncHttpClient.BoundRequestBuilder;
+import com.ning.http.client.AsyncHttpClientConfig;
+import com.ning.http.client.AsyncHttpClientConfig.Builder;
 import com.ning.http.client.Response;
 
 public enum HttpRequester {
 
     INSTANCE;
 
+    private static final int REQUEST_TIMEOUT_MS = 180000;
+
     public InputStream executeRequest(String url, ParameterAdder parameterAdder) throws BggServiceException {
-		AsyncHttpClient httpClient = new AsyncHttpClient();
+        AsyncHttpClient httpClient = createAsyncHttpClient();
 		try {
 			return executeRequest(parameterAdder.addParameters(httpClient.prepareGet(url)));
 		} finally {
@@ -24,10 +28,16 @@ public enum HttpRequester {
 		}
 	}
 
+    private AsyncHttpClient createAsyncHttpClient() {
+        Builder clientConfig = new AsyncHttpClientConfig.Builder();
+        clientConfig.setRequestTimeoutInMs(REQUEST_TIMEOUT_MS);
+		return new AsyncHttpClient(clientConfig.build());
+    }
+
 	private InputStream executeRequest(BoundRequestBuilder request) throws BggServiceException {
 		try {
 			Future<Response> future = request.execute();
-			return future.get(3l, TimeUnit.MINUTES).getResponseBodyAsStream();
+			return future.get(REQUEST_TIMEOUT_MS, TimeUnit.MILLISECONDS).getResponseBodyAsStream();
 		} catch (InterruptedException e) {
 			throw createException(request, e);
 		} catch (ExecutionException e) {
