@@ -2,25 +2,20 @@ package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-import co.yellowbricks.bggclient.common.JAXB;
-
-@XmlRootElement(name = "items")
+@Root(name = "items")
 public class UserCollection {
 
-	public static final Unmarshaller UNMARSHALLER = JAXB.createUnmarshaller(UserCollection.class);
-
-    @XmlAttribute(name = "totalitems")
+    @Attribute(name = "totalitems", required = false)
 	private int totalItems;
 
-	@XmlAttribute(name = "termsofuse")
+	@Attribute(name = "termsofuse", required = false)
 	private String termsOfUseUrl;
 
-	@XmlElement(name = "item")
+	@ElementList(inline = true, entry = "item", required = false)
 	private List<CollectionItem> items;
 
 	public int getTotalItems() {

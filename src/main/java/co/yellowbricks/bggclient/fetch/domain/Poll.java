@@ -2,23 +2,22 @@ package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Transient;
 
-//@Getter @EqualsAndHashCode @ToString
 public class Poll {
 
-    @XmlAttribute(name = "name")
+    @Attribute(name = "name", required = false)
     private String name;
 
-    @XmlAttribute(name = "title")
+    @Attribute(name = "title", required = false)
     private String title;
 
-    @XmlAttribute(name = "totalvotes")
+    @Attribute(name = "totalvotes", required = false)
     private int totalVotes;
 
-    @XmlElement(name = "results")
+    @ElementList(inline = true, entry = "results", required = false)
     private List<Results> resultsList;
 
     public String getName() {
@@ -37,7 +36,7 @@ public class Poll {
         return resultsList;
     }
 
-    @XmlTransient
+    @Transient
     public boolean isSuggestedNumPlayersPoll() {
         return getName().equals("suggested_numplayers");
     }
@@ -98,10 +97,10 @@ public class Poll {
 
     public static final class Results {
 
-        @XmlAttribute(name = "numplayers")
+        @Attribute(name = "numplayers", required = false)
         private String numPlayers;
 
-        @XmlElement(name = "result")
+        @ElementList(inline = true, entry = "result", required = false)
         private List<Result> results;
 
         public String getNumPlayers() {
@@ -153,11 +152,18 @@ public class Poll {
 
     public static final class Result {
 
-        @XmlAttribute(name = "value")
+        @Attribute(required = false)
+        private int level;
+
+        @Attribute(name = "value", required = false)
         private String value;
 
-        @XmlAttribute(name = "numvotes")
+        @Attribute(name = "numvotes", required = false)
         private int numVotes;
+
+        public int getLevel() {
+            return level;
+        }
 
         public String getValue() {
             return value;

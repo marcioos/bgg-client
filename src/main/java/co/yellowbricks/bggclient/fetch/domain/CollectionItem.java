@@ -1,33 +1,39 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 public class CollectionItem {
 
-	@XmlAttribute(name = "objecttype")
+	@Attribute(name = "objecttype", required = false)
 	private String type;
 
-	@XmlAttribute(name = "objectid", required = true)
+	@Attribute(name = "objectid", required = true)
 	private int id;
 
-	@XmlAttribute(name = "subtype")
+	@Attribute(name = "subtype", required = false)
 	private String subtype;
 
-	@XmlAttribute(name = "collid")
+	@Attribute(name = "collid", required = false)
 	private long collectionId;
 
-	@XmlElement(name = "name")
+	@Element(name = "name", required = false)
 	private String name;
 
-	@XmlElement(name = "yearpublished")
+	@Element(name = "yearpublished", required = false)
 	private String year;
 
-	@XmlElement(name = "image")
+	@Element(name = "image", required = false)
 	private String imageUrl;
 
-	@XmlElement(name = "thumbnail")
+	@Element(name = "thumbnail", required = false)
 	private String thumbnailUrl;
+
+	@Element(required = false)
+	private String status;
+
+	@Element(required = false)
+	private int numplays;
 
 	public long getCollectionId() {
         return collectionId;
@@ -59,6 +65,14 @@ public class CollectionItem {
 
 	public String getYear() {
         return year;
+    }
+
+	public String getStatus() {
+        return status;
+    }
+
+	public int getNumPlays() {
+        return numplays;
     }
 
     @Override

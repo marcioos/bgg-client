@@ -1,17 +1,20 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import org.simpleframework.xml.Attribute;
 
 public class Link {
 
-	@XmlAttribute(name = "type")
+	@Attribute(name = "type", required = false)
 	private String type;
 
-	@XmlAttribute(name = "id")
+	@Attribute(name = "id", required = false)
 	private int id;
 
-	@XmlAttribute(name = "value")
+	@Attribute(name = "value", required = false)
 	private String value;
+
+	@Attribute(required = false)
+	private String inbound;
 
 	public String getType() {
         return type;
@@ -23,6 +26,10 @@ public class Link {
 
 	public String getValue() {
         return value;
+    }
+
+	public String getInbound() {
+        return inbound;
     }
 
     @Override

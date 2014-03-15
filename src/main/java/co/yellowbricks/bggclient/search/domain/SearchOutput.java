@@ -2,25 +2,20 @@ package co.yellowbricks.bggclient.search.domain;
 
 import java.util.List;
 
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-import co.yellowbricks.bggclient.common.JAXB;
-
-@XmlRootElement(name = "items")
+@Root(name = "items")
 public class SearchOutput {
 
-    public static final Unmarshaller UNMARSHALLER = JAXB.createUnmarshaller(SearchOutput.class);
-
-	@XmlAttribute(name = "total")
+    @Attribute
 	private int total;
 
-	@XmlAttribute(name = "termsofuse")
-	private String termsOfUseUrl;
+    @Attribute
+	private String termsofuse;
 
-	@XmlElement(name = "item")
+    @ElementList(inline = true, entry = "item", required = false)
 	private List<SearchItem> items;
 
 	public int getTotal() {
@@ -28,7 +23,7 @@ public class SearchOutput {
     }
 
 	public String getTermsOfUseUrl() {
-        return termsOfUseUrl;
+        return termsofuse;
     }
 
 	public List<SearchItem> getItems() {
@@ -40,7 +35,7 @@ public class SearchOutput {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((items == null) ? 0 : items.hashCode());
-        result = prime * result + ((termsOfUseUrl == null) ? 0 : termsOfUseUrl.hashCode());
+        result = prime * result + ((termsofuse == null) ? 0 : termsofuse.hashCode());
         result = prime * result + total;
         return result;
     }
@@ -64,11 +59,11 @@ public class SearchOutput {
         } else if (!items.equals(other.items)) {
             return false;
         }
-        if (termsOfUseUrl == null) {
-            if (other.termsOfUseUrl != null) {
+        if (termsofuse == null) {
+            if (other.termsofuse != null) {
                 return false;
             }
-        } else if (!termsOfUseUrl.equals(other.termsOfUseUrl)) {
+        } else if (!termsofuse.equals(other.termsofuse)) {
             return false;
         }
         if (total != other.total) {

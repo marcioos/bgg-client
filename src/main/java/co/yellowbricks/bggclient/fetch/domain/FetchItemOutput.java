@@ -2,22 +2,17 @@ package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
 
-import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 
-import co.yellowbricks.bggclient.common.JAXB;
-
-@XmlRootElement(name = "items")
+@Root(name = "items")
 public class FetchItemOutput {
 
-	public static final Unmarshaller UNMARSHALLER = JAXB.createUnmarshaller(FetchItemOutput.class);
-
-    @XmlAttribute(name = "termsofuse")
+    @Attribute(name = "termsofuse", required = false)
 	private String termsOfUseUrl;
 
-	@XmlElement(name = "item")
+	@ElementList(entry = "item", inline = true, required = false)
 	private List<FetchItem> items;
 
 	public String getTermsOfUseUrl() {

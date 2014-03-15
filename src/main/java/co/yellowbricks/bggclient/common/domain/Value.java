@@ -1,10 +1,10 @@
 package co.yellowbricks.bggclient.common.domain;
 
-import javax.xml.bind.annotation.XmlAttribute;
+import org.simpleframework.xml.Attribute;
 
 public class Value {
 
-	@XmlAttribute(name = "value")
+	@Attribute
 	private String value;
 
 	public String getValue() {

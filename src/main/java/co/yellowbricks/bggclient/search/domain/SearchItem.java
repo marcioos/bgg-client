@@ -1,23 +1,23 @@
 package co.yellowbricks.bggclient.search.domain;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
 public class SearchItem {
 
-	@XmlAttribute(name = "type")
+    @Attribute
 	private String type;
 
-	@XmlAttribute(name = "id", required = true)
+    @Attribute
 	private int id;
 
-	@XmlElement(name = "name")
+    @Element
 	private SearchItemName name;
 
-	@XmlElement(name = "yearpublished")
-	private Value year;
+    @Element(required = false)
+	private Value yearpublished;
 
 	public String getType() {
         return type;
@@ -32,7 +32,7 @@ public class SearchItem {
     }
 
 	public Value getYear() {
-        return year;
+        return yearpublished;
     }
 
 
@@ -43,7 +43,7 @@ public class SearchItem {
         result = prime * result + id;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + ((type == null) ? 0 : type.hashCode());
-        result = prime * result + ((year == null) ? 0 : year.hashCode());
+        result = prime * result + ((yearpublished == null) ? 0 : yearpublished.hashCode());
         return result;
     }
 
@@ -76,11 +76,11 @@ public class SearchItem {
         } else if (!type.equals(other.type)) {
             return false;
         }
-        if (year == null) {
-            if (other.year != null) {
+        if (yearpublished == null) {
+            if (other.yearpublished != null) {
                 return false;
             }
-        } else if (!year.equals(other.year)) {
+        } else if (!yearpublished.equals(other.yearpublished)) {
             return false;
         }
         return true;
@@ -88,10 +88,10 @@ public class SearchItem {
 
 	public static final class SearchItemName {
 
-		@XmlAttribute(name = "type")
+	    @Attribute
 		private String type;
 
-		@XmlAttribute(name = "value")
+	    @Attribute
 		private String value;
 
 		public String getType() {

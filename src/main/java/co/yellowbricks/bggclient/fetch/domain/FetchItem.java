@@ -3,67 +3,67 @@ package co.yellowbricks.bggclient.fetch.domain;
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Transient;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
-//@Getter @EqualsAndHashCode @ToString
 public class FetchItem {
 
-	@XmlAttribute(name = "type")
+	@Attribute(name = "type", required = false)
 	private String type;
 
-	@XmlAttribute(name = "id", required = true)
+	@Attribute(name = "id", required = true)
 	private int id;
 
-	@XmlElement(name = "thumbnail")
+	@Element(name = "thumbnail", required = false)
 	private String thumbnailUrl;
 
-	@XmlElement(name = "image")
+	@Element(name = "image", required = false)
 	private String imageUrl;
 
-	@XmlElement(name = "name")
+	@ElementList(entry = "name", required = false, inline = true)
 	private List<FetchItemName> names;
 
-	@XmlElement(name = "description")
+	@Element(name = "description", required = false)
 	private String description;
 
-	@XmlElement(name = "yearpublished")
+	@Element(name = "yearpublished", required = false)
 	private Value year;
 
-	@XmlElement(name = "minplayers")
+	@Element(name = "minplayers", required = false)
 	private Value minPlayers;
 
-	@XmlElement(name = "maxplayers")
+	@Element(name = "maxplayers", required = false)
 	private Value maxPlayers;
 
-	@XmlElement(name = "minage")
+	@Element(name = "minage", required = false)
 	private Value minAge;
 
-	@XmlElement(name = "playingtime")
+	@Element(name = "playingtime", required = false)
 	private Value playingTime;
 
-	@XmlElement(name = "poll")
+	@ElementList(entry = "poll", inline = true, required = false)
 	private List<Poll> polls;
 
-	@XmlElement(name = "link")
+	@ElementList(entry = "link", inline = true, required = false)
 	private List<Link> links;
 
-	@XmlTransient
+	@Transient
 	private String name;
 
-	@XmlTransient
+	@Transient
 	private String bestNumberOfPlayers;
 
-	@XmlTransient
+	@Transient
 	private List<String> categories;
 
-	@XmlTransient
+	@Transient
 	private List<String> mechanics;
 
-	@XmlTransient
+	@Transient
 	private List<String> designers;
 
 	public String getType() {
@@ -118,31 +118,31 @@ public class FetchItem {
         return polls;
     }
 
-	@XmlTransient
+	@Transient
 	public String getName() {
 	    if (name == null) defineName();
 	    return name;
 	}
 
-	@XmlTransient
+	@Transient
 	public List<String> getCategories() {
 	    if (categories == null) categories = createLinkDataList("boardgamecategory");
 	    return categories;
 	}
 
-	@XmlTransient
+	@Transient
 	public List<String> getMechanics() {
 	    if (mechanics == null) mechanics = createLinkDataList("boardgamemechanic");
 	    return mechanics;
 	}
 
-	@XmlTransient
+	@Transient
 	public List<String> getDesigners() {
 	    if (designers == null) designers = createLinkDataList("boardgamedesigner");
 	    return designers;
 	}
 
-	@XmlTransient
+	@Transient
 	public String getBestNumberOfPlayers() {
 	    if (bestNumberOfPlayers == null) {
     	    if (getSuggestedNumPlayersPoll() == null) bestNumberOfPlayers = "unknown";
@@ -332,13 +332,13 @@ public class FetchItem {
 
 	public static class FetchItemName {
 
-		@XmlAttribute(name = "type")
+		@Attribute(name = "type", required = false)
 		private String type;
 
-		@XmlAttribute(name = "sortindex")
+		@Attribute(name = "sortindex", required = false)
 		private int sortIndex;
 
-		@XmlAttribute(name = "value")
+		@Attribute(name = "value", required = false)
 		private String value;
 
 		@Override
