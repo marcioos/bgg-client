@@ -16,7 +16,7 @@ public class BGGSearchTest {
     public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
         SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME);
 
-        Assert.assertThat(items.getTotal(), CoreMatchers.is(31));
+        Assert.assertThat(items.getTotal(), CoreMatchers.is(33));
     }
 
     @Test(expected = NoItemsFoundException.class)
