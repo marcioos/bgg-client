@@ -1,7 +1,9 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Root;
 
+@Root(name = "link", strict = false)
 public class Link {
 
 	@Attribute(name = "type", required = false)

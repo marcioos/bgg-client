@@ -2,7 +2,9 @@ package co.yellowbricks.bggclient.fetch.domain;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
+@Root(name = "item", strict = false)
 public class CollectionItem {
 
 	@Attribute(name = "objecttype", required = false)
@@ -34,6 +36,9 @@ public class CollectionItem {
 
 	@Element(required = false)
 	private int numplays;
+
+	@Element(required = false)
+	private String comment;
 
 	public long getCollectionId() {
         return collectionId;
@@ -73,6 +78,10 @@ public class CollectionItem {
 
 	public int getNumPlays() {
         return numplays;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     @Override

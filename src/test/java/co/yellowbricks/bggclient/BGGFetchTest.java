@@ -81,4 +81,11 @@ public class BGGFetchTest {
         for (CollectionItem item : myCollection.getItems()) if ("Dominion".equals(item.getName())) return;
         fail("Dominion not found");
     }
+
+    @Test
+    public void fetchBevatronCollection() throws FetchException, NoItemsFoundException {
+        String userName = "bevatron";
+
+        UserCollection collection = BGG.fetchCollection(userName);
+    }
 }

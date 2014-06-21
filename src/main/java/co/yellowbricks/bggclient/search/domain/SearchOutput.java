@@ -6,7 +6,7 @@ import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-@Root(name = "items")
+@Root(name = "items", strict = false)
 public class SearchOutput {
 
     @Attribute

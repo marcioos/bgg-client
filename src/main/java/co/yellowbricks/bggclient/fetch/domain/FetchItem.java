@@ -6,10 +6,12 @@ import java.util.List;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Transient;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
+@Root(name = "item", strict = false)
 public class FetchItem {
 
 	@Attribute(name = "type", required = false)

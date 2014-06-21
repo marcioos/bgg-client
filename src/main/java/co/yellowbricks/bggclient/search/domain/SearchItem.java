@@ -2,9 +2,11 @@ package co.yellowbricks.bggclient.search.domain;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
 import co.yellowbricks.bggclient.common.domain.Value;
 
+@Root(name = "item", strict = false)
 public class SearchItem {
 
     @Attribute

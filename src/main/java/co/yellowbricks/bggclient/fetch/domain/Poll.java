@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Transient;
 
+@Root(name = "poll", strict = false)
 public class Poll {
 
     @Attribute(name = "name", required = false)
