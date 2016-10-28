@@ -3,4 +3,6 @@ target
 .settings
 .classpath
 .idea
+.gradle
+build
 *.iml
