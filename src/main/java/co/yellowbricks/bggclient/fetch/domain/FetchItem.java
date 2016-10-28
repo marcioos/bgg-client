@@ -1,15 +1,15 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
-import java.util.LinkedList;
-import java.util.List;
-
+import co.yellowbricks.bggclient.common.domain.Value;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 import org.simpleframework.xml.Transient;
 
-import co.yellowbricks.bggclient.common.domain.Value;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Objects;
 
 @Root(name = "item", strict = false)
 public class FetchItem {
@@ -170,169 +170,43 @@ public class FetchItem {
         return linkDataList;
     }
 
-	@Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((bestNumberOfPlayers == null) ? 0 : bestNumberOfPlayers.hashCode());
-        result = prime * result + ((categories == null) ? 0 : categories.hashCode());
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
-        result = prime * result + ((designers == null) ? 0 : designers.hashCode());
-        result = prime * result + id;
-        result = prime * result + ((imageUrl == null) ? 0 : imageUrl.hashCode());
-        result = prime * result + ((links == null) ? 0 : links.hashCode());
-        result = prime * result + ((maxPlayers == null) ? 0 : maxPlayers.hashCode());
-        result = prime * result + ((mechanics == null) ? 0 : mechanics.hashCode());
-        result = prime * result + ((minAge == null) ? 0 : minAge.hashCode());
-        result = prime * result + ((minPlayers == null) ? 0 : minPlayers.hashCode());
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((names == null) ? 0 : names.hashCode());
-        result = prime * result + ((playingTime == null) ? 0 : playingTime.hashCode());
-        result = prime * result + ((polls == null) ? 0 : polls.hashCode());
-        result = prime * result + ((thumbnailUrl == null) ? 0 : thumbnailUrl.hashCode());
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
-        result = prime * result + ((year == null) ? 0 : year.hashCode());
-        return result;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        FetchItem fetchItem = (FetchItem) o;
+        return id == fetchItem.id &&
+                Objects.equals(type, fetchItem.type) &&
+                Objects.equals(thumbnailUrl, fetchItem.thumbnailUrl) &&
+                Objects.equals(imageUrl, fetchItem.imageUrl) &&
+                Objects.equals(names, fetchItem.names) &&
+                Objects.equals(description, fetchItem.description) &&
+                Objects.equals(year, fetchItem.year) &&
+                Objects.equals(minPlayers, fetchItem.minPlayers) &&
+                Objects.equals(maxPlayers, fetchItem.maxPlayers) &&
+                Objects.equals(minAge, fetchItem.minAge) &&
+                Objects.equals(playingTime, fetchItem.playingTime) &&
+                Objects.equals(polls, fetchItem.polls) &&
+                Objects.equals(links, fetchItem.links) &&
+                Objects.equals(name, fetchItem.name) &&
+                Objects.equals(bestNumberOfPlayers, fetchItem.bestNumberOfPlayers) &&
+                Objects.equals(categories, fetchItem.categories) &&
+                Objects.equals(mechanics, fetchItem.mechanics) &&
+                Objects.equals(designers, fetchItem.designers);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        FetchItem other = (FetchItem) obj;
-        if (bestNumberOfPlayers == null) {
-            if (other.bestNumberOfPlayers != null) {
-                return false;
-            }
-        } else if (!bestNumberOfPlayers.equals(other.bestNumberOfPlayers)) {
-            return false;
-        }
-        if (categories == null) {
-            if (other.categories != null) {
-                return false;
-            }
-        } else if (!categories.equals(other.categories)) {
-            return false;
-        }
-        if (description == null) {
-            if (other.description != null) {
-                return false;
-            }
-        } else if (!description.equals(other.description)) {
-            return false;
-        }
-        if (designers == null) {
-            if (other.designers != null) {
-                return false;
-            }
-        } else if (!designers.equals(other.designers)) {
-            return false;
-        }
-        if (id != other.id) {
-            return false;
-        }
-        if (imageUrl == null) {
-            if (other.imageUrl != null) {
-                return false;
-            }
-        } else if (!imageUrl.equals(other.imageUrl)) {
-            return false;
-        }
-        if (links == null) {
-            if (other.links != null) {
-                return false;
-            }
-        } else if (!links.equals(other.links)) {
-            return false;
-        }
-        if (maxPlayers == null) {
-            if (other.maxPlayers != null) {
-                return false;
-            }
-        } else if (!maxPlayers.equals(other.maxPlayers)) {
-            return false;
-        }
-        if (mechanics == null) {
-            if (other.mechanics != null) {
-                return false;
-            }
-        } else if (!mechanics.equals(other.mechanics)) {
-            return false;
-        }
-        if (minAge == null) {
-            if (other.minAge != null) {
-                return false;
-            }
-        } else if (!minAge.equals(other.minAge)) {
-            return false;
-        }
-        if (minPlayers == null) {
-            if (other.minPlayers != null) {
-                return false;
-            }
-        } else if (!minPlayers.equals(other.minPlayers)) {
-            return false;
-        }
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (names == null) {
-            if (other.names != null) {
-                return false;
-            }
-        } else if (!names.equals(other.names)) {
-            return false;
-        }
-        if (playingTime == null) {
-            if (other.playingTime != null) {
-                return false;
-            }
-        } else if (!playingTime.equals(other.playingTime)) {
-            return false;
-        }
-        if (polls == null) {
-            if (other.polls != null) {
-                return false;
-            }
-        } else if (!polls.equals(other.polls)) {
-            return false;
-        }
-        if (thumbnailUrl == null) {
-            if (other.thumbnailUrl != null) {
-                return false;
-            }
-        } else if (!thumbnailUrl.equals(other.thumbnailUrl)) {
-            return false;
-        }
-        if (type == null) {
-            if (other.type != null) {
-                return false;
-            }
-        } else if (!type.equals(other.type)) {
-            return false;
-        }
-        if (year == null) {
-            if (other.year != null) {
-                return false;
-            }
-        } else if (!year.equals(other.year)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(type, id, thumbnailUrl, imageUrl, names, description, year, minPlayers,
+                            maxPlayers, minAge, playingTime, polls, links, name, bestNumberOfPlayers,
+                            categories, mechanics, designers);
     }
 
-	public static class FetchItemName {
+    public static class FetchItemName {
 
 		@Attribute(name = "type", required = false)
 		private String type;
@@ -361,45 +235,22 @@ public class FetchItem {
         }
 
         @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + sortIndex;
-            result = prime * result + ((type == null) ? 0 : type.hashCode());
-            result = prime * result + ((value == null) ? 0 : value.hashCode());
-            return result;
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            FetchItemName that = (FetchItemName) o;
+            return sortIndex == that.sortIndex &&
+                    Objects.equals(type, that.type) &&
+                    Objects.equals(value, that.value);
         }
 
         @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            FetchItemName other = (FetchItemName) obj;
-            if (sortIndex != other.sortIndex) {
-                return false;
-            }
-            if (type == null) {
-                if (other.type != null) {
-                    return false;
-                }
-            } else if (!type.equals(other.type)) {
-                return false;
-            }
-            if (value == null) {
-                if (other.value != null) {
-                    return false;
-                }
-            } else if (!value.equals(other.value)) {
-                return false;
-            }
-            return true;
+        public int hashCode() {
+            return Objects.hash(type, sortIndex, value);
         }
-	}
+    }
 }

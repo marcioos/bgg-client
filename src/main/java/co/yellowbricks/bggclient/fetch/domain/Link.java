@@ -3,6 +3,8 @@ package co.yellowbricks.bggclient.fetch.domain;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;
 
+import java.util.Objects;
+
 @Root(name = "link", strict = false)
 public class Link {
 
@@ -35,44 +37,22 @@ public class Link {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
-        result = prime * result + ((value == null) ? 0 : value.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Link link = (Link) o;
+        return id == link.id &&
+                Objects.equals(type, link.type) &&
+                Objects.equals(value, link.value) &&
+                Objects.equals(inbound, link.inbound);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Link other = (Link) obj;
-        if (id != other.id) {
-            return false;
-        }
-        if (type == null) {
-            if (other.type != null) {
-                return false;
-            }
-        } else if (!type.equals(other.type)) {
-            return false;
-        }
-        if (value == null) {
-            if (other.value != null) {
-                return false;
-            }
-        } else if (!value.equals(other.value)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(type, id, value, inbound);
     }
 }

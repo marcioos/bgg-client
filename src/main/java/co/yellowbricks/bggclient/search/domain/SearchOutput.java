@@ -1,6 +1,7 @@
 package co.yellowbricks.bggclient.search.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
@@ -31,44 +32,21 @@ public class SearchOutput {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((items == null) ? 0 : items.hashCode());
-        result = prime * result + ((termsofuse == null) ? 0 : termsofuse.hashCode());
-        result = prime * result + total;
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        SearchOutput that = (SearchOutput) o;
+        return total == that.total &&
+                Objects.equals(termsofuse, that.termsofuse) &&
+                Objects.equals(items, that.items);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        SearchOutput other = (SearchOutput) obj;
-        if (items == null) {
-            if (other.items != null) {
-                return false;
-            }
-        } else if (!items.equals(other.items)) {
-            return false;
-        }
-        if (termsofuse == null) {
-            if (other.termsofuse != null) {
-                return false;
-            }
-        } else if (!termsofuse.equals(other.termsofuse)) {
-            return false;
-        }
-        if (total != other.total) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(total, termsofuse, items);
     }
 }

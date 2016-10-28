@@ -2,6 +2,7 @@ package co.yellowbricks.bggclient;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
@@ -49,7 +51,7 @@ public class BGGFetchTest {
         assertThat(((ArrayList<FetchItem>) item).get(1).getName(), containsString("Macher"));
     }
 
-    @Test(expected = NoItemsFoundException.class)
+    @Test(expected = FetchException.class)
     public void shouldFindNoItems() throws FetchException, NoItemsFoundException {
         BGG.fetch(Arrays.asList(13123123, 2380182));
     }
@@ -60,7 +62,7 @@ public class BGGFetchTest {
 
         UserCollection myCollection = BGG.fetchCollection(myName);
 
-        assertThat(myCollection.getTotalItems(), is(13));
+        assertThat(myCollection.getTotalItems(), is(not(0)));
     }
 
     @Test

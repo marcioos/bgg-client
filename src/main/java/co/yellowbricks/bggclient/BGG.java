@@ -1,8 +1,5 @@
 package co.yellowbricks.bggclient;
 
-import java.util.Collection;
-
-import retrofit.RetrofitError;
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.fetch.FetchException;
@@ -12,6 +9,8 @@ import co.yellowbricks.bggclient.fetch.domain.UserCollection;
 import co.yellowbricks.bggclient.search.SearchException;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
 
+import java.util.Collection;
+
 public final class BGG {
 
     private BGG() {
@@ -20,12 +19,12 @@ public final class BGG {
     public static SearchOutput search(String query, ThingType... thingTypes) throws SearchException, NoItemsFoundException {
         try {
             SearchOutput items =
-                    BggService.SingletonHolder.getInstance().search(query, getTypesQueryString(thingTypes));
+                    BggService.INSTANCE.search(query, getTypesQueryString(thingTypes)).execute().body();
 
             if (items.getItems() != null && !items.getItems().isEmpty())
                 return items;
             throw new NoItemsFoundException();
-        } catch (RetrofitError e) {
+        } catch (Exception e) {
             throw new SearchException("While searching for " + query, e);
         }
     }
@@ -33,24 +32,24 @@ public final class BGG {
     public static Collection<FetchItem> fetch(Collection<Integer> ids, ThingType... thingTypes) throws FetchException, NoItemsFoundException {
         try {
             FetchItemOutput items =
-                    BggService.SingletonHolder.getInstance().fetch(getIdsAsString(ids), getTypesQueryString(thingTypes));
+                    BggService.INSTANCE.fetch(getIdsAsString(ids), getTypesQueryString(thingTypes)).execute().body();
 
             if (items.getItems() != null && !items.getItems().isEmpty())
                 return items.getItems();
             throw new NoItemsFoundException();
-        } catch (RetrofitError e) {
+        } catch (Exception e) {
             throw new FetchException("While fetching ids: " + ids, e);
         }
     }
 
     public static UserCollection fetchCollection(String ownerName) throws FetchException, NoItemsFoundException {
         try {
-            UserCollection collection = BggService.SingletonHolder.getInstance().fetchCollection(ownerName, 1);
+            UserCollection collection = BggService.INSTANCE.fetchCollection(ownerName, 1).execute().body();
 
             if (collection.getItems() != null && !collection.getItems().isEmpty())
                 return collection;
             throw new NoItemsFoundException();
-        } catch (RetrofitError e) {
+        } catch (Exception e) {
             throw new FetchException("While fetching %s's collection " + ownerName, e);
         }
     }

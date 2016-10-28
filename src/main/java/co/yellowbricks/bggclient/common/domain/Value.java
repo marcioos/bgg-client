@@ -2,6 +2,8 @@ package co.yellowbricks.bggclient.common.domain;
 
 import org.simpleframework.xml.Attribute;
 
+import java.util.Objects;
+
 public class Value {
 
 	@Attribute
@@ -12,32 +14,19 @@ public class Value {
     }
 
     @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((value == null) ? 0 : value.hashCode());
-        return result;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Value value1 = (Value) o;
+        return Objects.equals(value, value1.value);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        Value other = (Value) obj;
-        if (value == null) {
-            if (other.value != null) {
-                return false;
-            }
-        } else if (!value.equals(other.value)) {
-            return false;
-        }
-        return true;
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }

@@ -1,6 +1,7 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
@@ -176,37 +177,22 @@ public class Poll {
         }
 
         @Override
-        public int hashCode() {
-            final int prime = 31;
-            int result = 1;
-            result = prime * result + numVotes;
-            result = prime * result + ((value == null) ? 0 : value.hashCode());
-            return result;
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Result result = (Result) o;
+            return level == result.level &&
+                    numVotes == result.numVotes &&
+                    Objects.equals(value, result.value);
         }
 
         @Override
-        public boolean equals(Object obj) {
-            if (this == obj) {
-                return true;
-            }
-            if (obj == null) {
-                return false;
-            }
-            if (getClass() != obj.getClass()) {
-                return false;
-            }
-            Result other = (Result) obj;
-            if (numVotes != other.numVotes) {
-                return false;
-            }
-            if (value == null) {
-                if (other.value != null) {
-                    return false;
-                }
-            } else if (!value.equals(other.value)) {
-                return false;
-            }
-            return true;
+        public int hashCode() {
+            return Objects.hash(level, value, numVotes);
         }
     }
 }

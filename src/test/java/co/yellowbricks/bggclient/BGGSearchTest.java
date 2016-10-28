@@ -1,14 +1,13 @@
 package co.yellowbricks.bggclient;
 
-import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.junit.Test;
-
 import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.search.SearchException;
 import co.yellowbricks.bggclient.search.domain.SearchItem;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
+import org.junit.Test;
 
 public class BGGSearchTest {
 
@@ -16,10 +15,10 @@ public class BGGSearchTest {
     public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
         SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME);
 
-        Assert.assertThat(items.getTotal(), CoreMatchers.is(34));
+        Assert.assertThat(items.getTotal(), CoreMatchers.is(52));
     }
 
-    @Test(expected = NoItemsFoundException.class)
+    @Test(expected = SearchException.class)
     public void shouldFindNoItems() throws SearchException, NoItemsFoundException {
         BGG.search("a game that should not exist");
     }
@@ -30,7 +29,11 @@ public class BGGSearchTest {
 
         SearchOutput items = BGG.search("agricola", ThingType.BOARDGAME);
 
-        for (SearchItem item : items.getItems()) if (item.getId() == agricolaXDeckId) return;
+        for (SearchItem item : items.getItems()) {
+            if (item.getId() == agricolaXDeckId) {
+                return;
+            }
+        }
         Assert.fail("SearchOutput does not contain Agricola X-Deck id");
     }
 }

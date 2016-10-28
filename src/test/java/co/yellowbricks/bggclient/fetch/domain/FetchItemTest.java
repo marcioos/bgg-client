@@ -26,14 +26,14 @@ public class FetchItemTest {
     public void shouldGetDieMacherCategories() throws FetchException, NoItemsFoundException {
         FetchItem dieMacher = BGG.fetch(Arrays.asList(DIE_MACHER_ID)).iterator().next();
 
-        Assert.assertThat(dieMacher.getCategories(), CoreMatchers.equalTo(Arrays.asList("Dice", "Economic", "Negotiation", "Political")));
+        Assert.assertThat(dieMacher.getCategories(), CoreMatchers.equalTo(Arrays.asList("Economic", "Negotiation", "Political")));
     }
 
     @Test
     public void shouldGetDieMacherMechanics() throws FetchException, NoItemsFoundException {
         FetchItem dieMacher = BGG.fetch(Arrays.asList(DIE_MACHER_ID)).iterator().next();
 
-        Assert.assertThat(dieMacher.getMechanics(), CoreMatchers.equalTo(Arrays.asList("Area Control / Area Influence", "Auction/Bidding", "Dice Rolling", "Hand Management")));
+        Assert.assertThat(dieMacher.getMechanics(), CoreMatchers.equalTo(Arrays.asList("Area Control / Area Influence", "Auction/Bidding", "Dice Rolling", "Hand Management", "Simultaneous Action Selection")));
     }
 
     @Test
