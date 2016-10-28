@@ -18,6 +18,10 @@ public enum ThingType {
     ThingType(String key) {
         this.key = key;
     }
+
+    public static ThingType withKey(String key) {
+        return thingMap.get(key);
+    }
     
     public String getKey() {
         return key;
