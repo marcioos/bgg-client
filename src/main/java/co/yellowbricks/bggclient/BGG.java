@@ -1,6 +1,5 @@
 package co.yellowbricks.bggclient;
 
-import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.fetch.FetchException;
 import co.yellowbricks.bggclient.fetch.domain.FetchItem;
@@ -8,47 +7,56 @@ import co.yellowbricks.bggclient.fetch.domain.FetchItemOutput;
 import co.yellowbricks.bggclient.fetch.domain.UserCollection;
 import co.yellowbricks.bggclient.search.SearchException;
 import co.yellowbricks.bggclient.search.domain.SearchOutput;
+import retrofit2.Response;
 
 import java.util.Collection;
+import java.util.Optional;
+
+import static java.util.Collections.emptyList;
+import static java.util.Optional.empty;
+import static java.util.Optional.ofNullable;
 
 public final class BGG {
 
     private BGG() {
     }
 
-    public static SearchOutput search(String query, ThingType... thingTypes) throws SearchException, NoItemsFoundException {
+    public static Optional<SearchOutput> search(String query, ThingType... thingTypes) throws SearchException {
         try {
-            SearchOutput items =
-                    BggService.INSTANCE.search(query, getTypesQueryString(thingTypes)).execute().body();
+            Response<SearchOutput> searchResponse =
+                    BggService.INSTANCE.search(query, getTypesQueryString(thingTypes)).execute();
 
-            if (items.getItems() != null && !items.getItems().isEmpty())
-                return items;
-            throw new NoItemsFoundException();
+            if (searchResponse.isSuccessful()) {
+                return ofNullable(searchResponse.body());
+            }
+            return empty();
         } catch (Exception e) {
             throw new SearchException("While searching for " + query, e);
         }
     }
 
-    public static Collection<FetchItem> fetch(Collection<Integer> ids, ThingType... thingTypes) throws FetchException, NoItemsFoundException {
+    public static Collection<FetchItem> fetch(Collection<Integer> ids, ThingType... thingTypes) throws FetchException {
         try {
-            FetchItemOutput items =
-                    BggService.INSTANCE.fetch(getIdsAsString(ids), getTypesQueryString(thingTypes)).execute().body();
+            Response<FetchItemOutput> fetchResponse =
+                    BggService.INSTANCE.fetch(getIdsAsString(ids), getTypesQueryString(thingTypes)).execute();
 
-            if (items.getItems() != null && !items.getItems().isEmpty())
-                return items.getItems();
-            throw new NoItemsFoundException();
+            if (fetchResponse.isSuccessful()) {
+                return fetchResponse.body().getItems();
+            }
+            return emptyList();
         } catch (Exception e) {
             throw new FetchException("While fetching ids: " + ids, e);
         }
     }
 
-    public static UserCollection fetchCollection(String ownerName) throws FetchException, NoItemsFoundException {
+    public static Optional<UserCollection> fetchCollection(String ownerName) throws FetchException {
         try {
-            UserCollection collection = BggService.INSTANCE.fetchCollection(ownerName, 1).execute().body();
+            Response<UserCollection> collectionResponse = BggService.INSTANCE.fetchCollection(ownerName, 1).execute();
 
-            if (collection.getItems() != null && !collection.getItems().isEmpty())
-                return collection;
-            throw new NoItemsFoundException();
+            if (collectionResponse.isSuccessful()) {
+                return ofNullable(collectionResponse.body());
+            }
+            return empty();
         } catch (Exception e) {
             throw new FetchException("While fetching %s's collection " + ownerName, e);
         }

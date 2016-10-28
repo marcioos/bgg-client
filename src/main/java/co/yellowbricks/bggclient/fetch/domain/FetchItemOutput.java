@@ -1,11 +1,14 @@
 package co.yellowbricks.bggclient.fetch.domain;
 
-import java.util.List;
-import java.util.Objects;
-
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Objects;
+
+import static java.util.Optional.ofNullable;
 
 @Root(name = "items", strict = false)
 public class FetchItemOutput {
@@ -21,7 +24,7 @@ public class FetchItemOutput {
     }
 
 	public List<FetchItem> getItems() {
-        return items;
+        return ofNullable(items).orElseGet(Collections::emptyList);
     }
 
     @Override

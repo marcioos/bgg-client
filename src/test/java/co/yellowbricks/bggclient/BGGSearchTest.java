@@ -1,6 +1,5 @@
 package co.yellowbricks.bggclient;
 
-import co.yellowbricks.bggclient.common.NoItemsFoundException;
 import co.yellowbricks.bggclient.common.ThingType;
 import co.yellowbricks.bggclient.search.SearchException;
 import co.yellowbricks.bggclient.search.domain.SearchItem;
@@ -9,31 +8,36 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Optional;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
 public class BGGSearchTest {
 
     @Test
-    public void shouldReturnCorrectAmountOfDominionGames() throws SearchException, NoItemsFoundException {
-        SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME);
+    public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
+        SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME).get();
 
-        Assert.assertThat(items.getTotal(), CoreMatchers.is(52));
+        assertThat(items.getTotal(), is(52));
     }
 
-    @Test(expected = SearchException.class)
-    public void shouldFindNoItems() throws SearchException, NoItemsFoundException {
-        BGG.search("a game that should not exist");
+    public void shouldFindNoItems() throws SearchException {
+        assertThat(BGG.search("a game that should not exist"), is(Optional.empty()));
     }
 
     @Test
-    public void searchBoardgamesShouldReturnExpansion() throws SearchException, NoItemsFoundException {
+    public void searchBoardgamesShouldReturnExpansion() throws SearchException {
         int agricolaXDeckId = 38733;
 
-        SearchOutput items = BGG.search("agricola", ThingType.BOARDGAME);
+        SearchOutput items = BGG.search("agricola", ThingType.BOARDGAME).get();
 
         for (SearchItem item : items.getItems()) {
             if (item.getId() == agricolaXDeckId) {
                 return;
             }
         }
-        Assert.fail("SearchOutput does not contain Agricola X-Deck id");
+        fail("SearchOutput does not contain Agricola X-Deck id");
     }
 }
