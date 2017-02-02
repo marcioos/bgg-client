@@ -57,7 +57,7 @@ public class BGGFetchTest {
     public void shouldFetchMyCollection() throws FetchException {
         String myName = "marcio_os";
 
-        UserCollection myCollection = BGG.fetchCollection(myName).get();
+        UserCollection myCollection = BGG.fetchCollection(myName);
 
         assertThat(myCollection.getTotalItems(), is(not(0)));
     }
@@ -66,7 +66,7 @@ public class BGGFetchTest {
     public void collectionShouldContainBGGTermsOfUseUrl() throws FetchException {
         String myName = "marcio_os";
 
-        UserCollection myCollection = BGG.fetchCollection(myName).get();
+        UserCollection myCollection = BGG.fetchCollection(myName);
 
         assertThat(myCollection.getTermsOfUseUrl(), is("http://boardgamegeek.com/xmlapi/termsofuse"));
     }
@@ -75,7 +75,7 @@ public class BGGFetchTest {
     public void myCollectionShouldContainDominion() throws FetchException {
         String myName = "marcio_os";
 
-        UserCollection myCollection = BGG.fetchCollection(myName).get();
+        UserCollection myCollection = BGG.fetchCollection(myName);
 
         for (CollectionItem item : myCollection.getItems()) if ("Dominion".equals(item.getName())) return;
         fail("Dominion not found");

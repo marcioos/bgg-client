@@ -2,12 +2,12 @@ apply plugin: 'java'
 apply plugin: 'maven-publish'
 
 group = 'co.yellowbricks'
-version = '2.1'
+version = '3.0'
 
 description = "Board Game Geek Client"
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'

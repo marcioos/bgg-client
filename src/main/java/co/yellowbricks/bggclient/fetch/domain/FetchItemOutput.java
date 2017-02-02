@@ -8,23 +8,24 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Optional.ofNullable;
-
 @Root(name = "items", strict = false)
 public class FetchItemOutput {
 
     @Attribute(name = "termsofuse", required = false)
-	private String termsOfUseUrl;
+    private String termsOfUseUrl;
 
-	@ElementList(entry = "item", inline = true, required = false)
-	private List<FetchItem> items;
+    @ElementList(entry = "item", inline = true, required = false)
+    private List<FetchItem> items;
 
-	public String getTermsOfUseUrl() {
+    public String getTermsOfUseUrl() {
         return termsOfUseUrl;
     }
 
-	public List<FetchItem> getItems() {
-        return ofNullable(items).orElseGet(Collections::emptyList);
+    public List<FetchItem> getItems() {
+        if (items == null) {
+            return Collections.emptyList();
+        }
+        return items;
     }
 
     @Override

@@ -10,26 +10,25 @@ import co.yellowbricks.bggclient.search.domain.SearchOutput;
 import retrofit2.Response;
 
 import java.util.Collection;
-import java.util.Optional;
 
 import static java.util.Collections.emptyList;
-import static java.util.Optional.empty;
-import static java.util.Optional.ofNullable;
 
 public final class BGG {
 
     private BGG() {
     }
 
-    public static Optional<SearchOutput> search(String query, ThingType... thingTypes) throws SearchException {
+    public static SearchOutput search(String query, ThingType... thingTypes) throws SearchException {
         try {
             Response<SearchOutput> searchResponse =
                     BggService.INSTANCE.search(query, getTypesQueryString(thingTypes)).execute();
 
             if (searchResponse.isSuccessful()) {
-                return ofNullable(searchResponse.body()).filter(searchOutput -> searchOutput.getTotal() > 0);
+                if (searchResponse.body() != null && searchResponse.body().getTotal() > 0) {
+                    return searchResponse.body();
+                }
             }
-            return empty();
+            return null;
         } catch (Exception e) {
             throw new SearchException("While searching for " + query, e);
         }
@@ -49,14 +48,14 @@ public final class BGG {
         }
     }
 
-    public static Optional<UserCollection> fetchCollection(String ownerName) throws FetchException {
+    public static UserCollection fetchCollection(String ownerName) throws FetchException {
         try {
             Response<UserCollection> collectionResponse = BggService.INSTANCE.fetchCollection(ownerName, 1).execute();
 
-            if (collectionResponse.isSuccessful()) {
-                return ofNullable(collectionResponse.body());
+            if (collectionResponse.isSuccessful() && collectionResponse.body() != null) {
+                return collectionResponse.body();
             }
-            return empty();
+            return null;
         } catch (Exception e) {
             throw new FetchException("While fetching %s's collection " + ownerName, e);
         }
@@ -66,7 +65,9 @@ public final class BGG {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < thingTypes.length; i++) {
             builder.append(thingTypes[i].getKey());
-            if (i < (thingTypes.length - 1)) builder.append(",");
+            if (i < (thingTypes.length - 1)) {
+                builder.append(",");
+            }
         }
         return builder.toString();
     }
@@ -77,6 +78,6 @@ public final class BGG {
             builder.append(String.valueOf(id));
             builder.append(',');
         }
-        return builder.length() > 0 ? builder.substring(0, builder.length() - 1): "";
+        return builder.length() > 0 ? builder.substring(0, builder.length() - 1) : "";
     }
 }
