@@ -27,7 +27,7 @@ public final class BGG {
                     BggService.INSTANCE.search(query, getTypesQueryString(thingTypes)).execute();
 
             if (searchResponse.isSuccessful()) {
-                return ofNullable(searchResponse.body());
+                return ofNullable(searchResponse.body()).filter(searchOutput -> searchOutput.getTotal() > 0);
             }
             return empty();
         } catch (Exception e) {

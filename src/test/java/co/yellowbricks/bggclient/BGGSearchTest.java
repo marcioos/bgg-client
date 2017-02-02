@@ -20,9 +20,10 @@ public class BGGSearchTest {
     public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
         SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME).get();
 
-        assertThat(items.getTotal(), is(52));
+        assertThat(items.getTotal() > 50, is(true));
     }
 
+    @Test
     public void shouldFindNoItems() throws SearchException {
         assertThat(BGG.search("a game that should not exist"), is(Optional.empty()));
     }
