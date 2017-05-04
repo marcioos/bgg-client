@@ -15,7 +15,7 @@ This will create a folder called `local-repo` which is a local maven repo contai
 Once `local-repo` has been created, move it to the root level of your project and add the following to your `build.gradle` file:
 
 ```java
-def localRepoDir = new File("$rootDir", "localRepo").toURI().toURL()
+def localRepoDir = new File("$rootDir", "local-repo").toURI().toURL()
 
 buildscript {
   repositories {
