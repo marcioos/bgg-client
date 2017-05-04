@@ -4,15 +4,15 @@ BoardGameGeek API 2 client for Java and Android apps
 ## Building
 Since bgg-client is not available on any public maven repository (someone was too lazy to go through the process), you need to build it yourself as a maven artifact and import it in your project.
 
-To build it, run the following on the project root level:
+Run the following on the project root level:
 ```
 ./gradlew publish
 ```
 
-This will create a folder called `local-repo` with a local maven repo containing the bgg-client artifact.
+This will create a folder called `local-repo` which is a local maven repo containing the bgg-client artifact.
 
 ## Importing it as a Gradle dependency
-Once the `local-repo` folder has been created, move it to the root level of your project and add the following to your `build.gradle` file:
+Once `local-repo` has been created, move it to the root level of your project and add the following to your `build.gradle` file:
 
 ```java
 def localRepoDir = new File("$rootDir", "localRepo").toURI().toURL()
@@ -37,7 +37,7 @@ dependencies {
 }
 ```
 
-## Client methods
+## Using the client
 There's a single class called `BGG` that exposes the 3 main client operations as static methods: `search`, `fetch` and `fetchCollection`.
 
 ### Search
@@ -52,7 +52,7 @@ public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
 }
 ```
 
-`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game: `type`, `id`, `name` and `year`.
+`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem.java](src/main/java/co/yellowbricks/bggclient/search/domain/SearchItem.java)
 
 ### Fetch
 `BGG.fetch` returns objects with more detailed information regarding fetched items.
@@ -70,7 +70,7 @@ public void shouldFetchAgricolaXDeckAndDieMacher() throws FetchException {
 }
 ```
 
-Each `FetchItem` contain most of the data available on Board Game Geek regarding a game.
+`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem.java](src/main/java/co/yellowbricks/bggclient/fetch/domain/FetchItem.java)
 
 ### Fetch collection
 `BGG.fetchCollection` returns an user board game collection.
@@ -85,3 +85,5 @@ public void shouldFetchMyCollection() throws FetchException {
     assertThat(myCollection.getTotalItems(), is(not(0)));
 }
 ```
+
+See [UserCollection.java](src/main/java/co/yellowbricks/bggclient/fetch/domain/UserCollection.java)
