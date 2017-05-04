@@ -8,31 +8,31 @@ import java.util.Objects;
 @Root(name = "link", strict = false)
 public class Link {
 
-	@Attribute(name = "type", required = false)
-	private String type;
+    @Attribute(name = "type", required = false)
+    private String type;
 
-	@Attribute(name = "id", required = false)
-	private int id;
+    @Attribute(name = "id", required = false)
+    private int id;
 
-	@Attribute(name = "value", required = false)
-	private String value;
+    @Attribute(name = "value", required = false)
+    private String value;
 
-	@Attribute(required = false)
-	private String inbound;
+    @Attribute(required = false)
+    private String inbound;
 
-	public String getType() {
+    public String getType() {
         return type;
     }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 
-	public String getValue() {
+    public String getValue() {
         return value;
     }
 
-	public String getInbound() {
+    public String getInbound() {
         return inbound;
     }
 

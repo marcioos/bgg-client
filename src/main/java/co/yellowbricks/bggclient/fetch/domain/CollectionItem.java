@@ -9,76 +9,76 @@ import java.util.Objects;
 @Root(name = "item", strict = false)
 public class CollectionItem {
 
-	@Attribute(name = "objecttype", required = false)
-	private String type;
+    @Attribute(name = "objecttype", required = false)
+    private String type;
 
-	@Attribute(name = "objectid", required = true)
-	private int id;
+    @Attribute(name = "objectid", required = true)
+    private int id;
 
-	@Attribute(name = "subtype", required = false)
-	private String subtype;
+    @Attribute(name = "subtype", required = false)
+    private String subtype;
 
-	@Attribute(name = "collid", required = false)
-	private long collectionId;
+    @Attribute(name = "collid", required = false)
+    private long collectionId;
 
-	@Element(name = "name", required = false)
-	private String name;
+    @Element(name = "name", required = false)
+    private String name;
 
-	@Element(name = "yearpublished", required = false)
-	private String year;
+    @Element(name = "yearpublished", required = false)
+    private String year;
 
-	@Element(name = "image", required = false)
-	private String imageUrl;
+    @Element(name = "image", required = false)
+    private String imageUrl;
 
-	@Element(name = "thumbnail", required = false)
-	private String thumbnailUrl;
+    @Element(name = "thumbnail", required = false)
+    private String thumbnailUrl;
 
-	@Element(required = false)
-	private String status;
+    @Element(required = false)
+    private String status;
 
-	@Element(required = false)
-	private int numplays;
+    @Element(required = false)
+    private int numplays;
 
-	@Element(required = false)
-	private String comment;
+    @Element(required = false)
+    private String comment;
 
-	public long getCollectionId() {
+    public long getCollectionId() {
         return collectionId;
     }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 
-	public String getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-	public String getName() {
+    public String getName() {
         return name;
     }
 
-	public String getSubtype() {
+    public String getSubtype() {
         return subtype;
     }
 
-	public String getThumbnailUrl() {
+    public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
-	public String getType() {
+    public String getType() {
         return type;
     }
 
-	public String getYear() {
+    public String getYear() {
         return year;
     }
 
-	public String getStatus() {
+    public String getStatus() {
         return status;
     }
 
-	public int getNumPlays() {
+    public int getNumPlays() {
         return numplays;
     }
 

@@ -6,10 +6,10 @@ import java.util.Objects;
 
 public class Value {
 
-	@Attribute
-	private String value;
+    @Attribute
+    private String value;
 
-	public String getValue() {
+    public String getValue() {
         return value;
     }
 

@@ -11,23 +11,23 @@ import org.simpleframework.xml.Root;
 public class SearchOutput {
 
     @Attribute
-	private int total;
+    private int total;
 
     @Attribute
-	private String termsofuse;
+    private String termsofuse;
 
     @ElementList(inline = true, entry = "item", required = false)
-	private List<SearchItem> items;
+    private List<SearchItem> items;
 
-	public int getTotal() {
+    public int getTotal() {
         return total;
     }
 
-	public String getTermsOfUseUrl() {
+    public String getTermsOfUseUrl() {
         return termsofuse;
     }
 
-	public List<SearchItem> getItems() {
+    public List<SearchItem> getItems() {
         return items;
     }
 

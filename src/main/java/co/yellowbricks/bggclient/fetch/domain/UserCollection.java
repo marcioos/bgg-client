@@ -11,26 +11,26 @@ import org.simpleframework.xml.Root;
 public class UserCollection {
 
     @Attribute(name = "totalitems", required = false)
-	private int totalItems;
+    private int totalItems;
 
-	@Attribute(name = "termsofuse", required = false)
-	private String termsOfUseUrl;
+    @Attribute(name = "termsofuse", required = false)
+    private String termsOfUseUrl;
 
-	@Attribute(name = "pubdate", required = false)
-	private String pubDate;
+    @Attribute(name = "pubdate", required = false)
+    private String pubDate;
 
-	@ElementList(inline = true, entry = "item", required = false)
-	private List<CollectionItem> items;
+    @ElementList(inline = true, entry = "item", required = false)
+    private List<CollectionItem> items;
 
-	public int getTotalItems() {
+    public int getTotalItems() {
         return totalItems;
     }
 
-	public String getTermsOfUseUrl() {
+    public String getTermsOfUseUrl() {
         return termsOfUseUrl;
     }
 
-	public List<CollectionItem> getItems() {
+    public List<CollectionItem> getItems() {
         return items;
     }
 

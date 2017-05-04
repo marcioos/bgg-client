@@ -17,10 +17,10 @@ public interface BggService {
     String BASE_URL = "http://www.boardgamegeek.com/xmlapi2/";
 
     OkHttpClient client = new OkHttpClient.Builder()
-                                          .connectTimeout(20L, TimeUnit.SECONDS)
-                                          .readTimeout(10L, TimeUnit.SECONDS)
-                                          .retryOnConnectionFailure(true)
-                                          .build();
+            .connectTimeout(20L, TimeUnit.SECONDS)
+            .readTimeout(10L, TimeUnit.SECONDS)
+            .retryOnConnectionFailure(true)
+            .build();
 
     BggService INSTANCE = new Builder().baseUrl(BASE_URL)
                                        .addConverterFactory(SimpleXmlConverterFactory.createNonStrict())

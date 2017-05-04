@@ -14,159 +14,186 @@ import java.util.Objects;
 @Root(name = "item", strict = false)
 public class FetchItem {
 
-	@Attribute(name = "type", required = false)
-	private String type;
+    @Attribute(name = "type", required = false)
+    private String type;
 
-	@Attribute(name = "id", required = true)
-	private int id;
+    @Attribute(name = "id", required = true)
+    private int id;
 
-	@Element(name = "thumbnail", required = false)
-	private String thumbnailUrl;
+    @Element(name = "thumbnail", required = false)
+    private String thumbnailUrl;
 
-	@Element(name = "image", required = false)
-	private String imageUrl;
+    @Element(name = "image", required = false)
+    private String imageUrl;
 
-	@ElementList(entry = "name", required = false, inline = true)
-	private List<FetchItemName> names;
+    @ElementList(entry = "name", required = false, inline = true)
+    private List<FetchItemName> names;
 
-	@Element(name = "description", required = false)
-	private String description;
+    @Element(name = "description", required = false)
+    private String description;
 
-	@Element(name = "yearpublished", required = false)
-	private Value year;
+    @Element(name = "yearpublished", required = false)
+    private Value year;
 
-	@Element(name = "minplayers", required = false)
-	private Value minPlayers;
+    @Element(name = "minplayers", required = false)
+    private Value minPlayers;
 
-	@Element(name = "maxplayers", required = false)
-	private Value maxPlayers;
+    @Element(name = "maxplayers", required = false)
+    private Value maxPlayers;
 
-	@Element(name = "minage", required = false)
-	private Value minAge;
+    @Element(name = "minage", required = false)
+    private Value minAge;
 
-	@Element(name = "playingtime", required = false)
-	private Value playingTime;
+    @Element(name = "playingtime", required = false)
+    private Value playingTime;
 
-	@ElementList(entry = "poll", inline = true, required = false)
-	private List<Poll> polls;
+    @ElementList(entry = "poll", inline = true, required = false)
+    private List<Poll> polls;
 
-	@ElementList(entry = "link", inline = true, required = false)
-	private List<Link> links;
+    @ElementList(entry = "link", inline = true, required = false)
+    private List<Link> links;
 
-	@Transient
-	private String name;
+    @Transient
+    private String name;
 
-	@Transient
-	private String bestNumberOfPlayers;
+    @Transient
+    private String bestNumberOfPlayers;
 
-	@Transient
-	private List<String> categories;
+    @Transient
+    private List<String> categories;
 
-	@Transient
-	private List<String> mechanics;
+    @Transient
+    private List<String> mechanics;
 
-	@Transient
-	private List<String> designers;
+    @Transient
+    private List<String> designers;
 
-	public String getType() {
+    public String getType() {
         return type;
     }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 
-	public String getThumbnailUrl() {
+    public String getThumbnailUrl() {
         return thumbnailUrl;
     }
 
-	public String getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
     }
 
-	public List<FetchItemName> getNames() {
+    public List<FetchItemName> getNames() {
         return names;
     }
 
-	public String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-	public Value getYear() {
+    public Value getYear() {
         return year;
     }
 
-	public Value getMinAge() {
+    public Value getMinAge() {
         return minAge;
     }
 
-	public Value getMinPlayers() {
+    public Value getMinPlayers() {
         return minPlayers;
     }
 
-	public List<Link> getLinks() {
+    public List<Link> getLinks() {
         return links;
     }
 
-	public Value getMaxPlayers() {
+    public Value getMaxPlayers() {
         return maxPlayers;
     }
 
-	public Value getPlayingTime() {
+    public Value getPlayingTime() {
         return playingTime;
     }
 
-	public List<Poll> getPolls() {
+    public List<Poll> getPolls() {
         return polls;
     }
 
-	@Transient
-	public String getName() {
-	    if (name == null) defineName();
-	    return name;
-	}
+    @Transient
+    public String getName() {
+        if (name == null) {
+            defineName();
+        }
+        return name;
+    }
 
-	@Transient
-	public List<String> getCategories() {
-	    if (categories == null) categories = createLinkDataList("boardgamecategory");
-	    return categories;
-	}
+    @Transient
+    public List<String> getCategories() {
+        if (categories == null) {
+            categories = createLinkDataList("boardgamecategory");
+        }
+        return categories;
+    }
 
-	@Transient
-	public List<String> getMechanics() {
-	    if (mechanics == null) mechanics = createLinkDataList("boardgamemechanic");
-	    return mechanics;
-	}
+    @Transient
+    public List<String> getMechanics() {
+        if (mechanics == null) {
+            mechanics = createLinkDataList("boardgamemechanic");
+        }
+        return mechanics;
+    }
 
-	@Transient
-	public List<String> getDesigners() {
-	    if (designers == null) designers = createLinkDataList("boardgamedesigner");
-	    return designers;
-	}
+    @Transient
+    public List<String> getDesigners() {
+        if (designers == null) {
+            designers = createLinkDataList("boardgamedesigner");
+        }
+        return designers;
+    }
 
-	@Transient
-	public String getBestNumberOfPlayers() {
-	    if (bestNumberOfPlayers == null) {
-    	    if (getSuggestedNumPlayersPoll() == null) bestNumberOfPlayers = "unknown";
-    	    else bestNumberOfPlayers = getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
-    	    if (bestNumberOfPlayers == null) bestNumberOfPlayers = "unknown";
-	    }
-	    return bestNumberOfPlayers;
-	}
+    @Transient
+    public String getBestNumberOfPlayers() {
+        if (bestNumberOfPlayers == null) {
+            if (getSuggestedNumPlayersPoll() == null) {
+                bestNumberOfPlayers = "unknown";
+            } else {
+                bestNumberOfPlayers = getSuggestedNumPlayersPoll().getNumberOfPlayersWithMostBestVotes();
+            }
+            if (bestNumberOfPlayers == null) {
+                bestNumberOfPlayers = "unknown";
+            }
+        }
+        return bestNumberOfPlayers;
+    }
 
     private SuggestedNumPlayersPoll getSuggestedNumPlayersPoll() {
-        for (Poll poll : polls) if (poll.isSuggestedNumPlayersPoll()) return poll.asSuggestedNumPlayersPoll();
-	    return null;
+        for (Poll poll : polls) {
+            if (poll.isSuggestedNumPlayersPoll()) {
+                return poll.asSuggestedNumPlayersPoll();
+            }
+        }
+        return null;
     }
 
     private void defineName() {
-        for (FetchItemName itemName : names) if (itemName.type.equals("primary")) name = itemName.value;
-        if (name == null) name = names.get(0).value;
+        for (FetchItemName itemName : names) {
+            if (itemName.type.equals("primary")) {
+                name = itemName.value;
+            }
+        }
+        if (name == null) {
+            name = names.get(0).value;
+        }
     }
 
     private List<String> createLinkDataList(String linkType) {
         List<String> linkDataList = new LinkedList<String>();
-        for (Link link : links) if (link.getType().equals(linkType)) linkDataList.add(link.getValue());
+        for (Link link : links) {
+            if (link.getType().equals(linkType)) {
+                linkDataList.add(link.getValue());
+            }
+        }
         return linkDataList;
     }
 
@@ -208,29 +235,29 @@ public class FetchItem {
 
     public static class FetchItemName {
 
-		@Attribute(name = "type", required = false)
-		private String type;
+        @Attribute(name = "type", required = false)
+        private String type;
 
-		@Attribute(name = "sortindex", required = false)
-		private int sortIndex;
+        @Attribute(name = "sortindex", required = false)
+        private int sortIndex;
 
-		@Attribute(name = "value", required = false)
-		private String value;
+        @Attribute(name = "value", required = false)
+        private String value;
 
-		@Override
-		public String toString() {
-			return value;
-		}
+        @Override
+        public String toString() {
+            return value;
+        }
 
-		public int getSortIndex() {
+        public int getSortIndex() {
             return sortIndex;
         }
 
-		public String getType() {
+        public String getType() {
             return type;
         }
 
-		public String getValue() {
+        public String getValue() {
             return value;
         }
 

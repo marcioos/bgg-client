@@ -14,34 +14,44 @@ public class SuggestedNumPlayersPoll {
     private String numberOfPlayersWithMostBestVotes;
 
     public SuggestedNumPlayersPoll(Poll poll) {
-        if (!poll.isSuggestedNumPlayersPoll()) throw new IllegalArgumentException("this is not a suggested_numplayers poll");
+        if (!poll.isSuggestedNumPlayersPoll()) {
+            throw new IllegalArgumentException("this is not a suggested_numplayers poll");
+        }
         this.poll = poll;
     }
-    
+
     public String getNumberOfPlayersWithMostBestVotes() {
-        if (numberOfPlayersWithMostBestVotes == null) calculateSuggestedNumberOfPlayersPollResults();
+        if (numberOfPlayersWithMostBestVotes == null) {
+            calculateSuggestedNumberOfPlayersPollResults();
+        }
         return numberOfPlayersWithMostBestVotes;
     }
 
     private void calculateSuggestedNumberOfPlayersPollResults() {
         Integer maxBestVotes = 0;
-        for (Entry<String, Integer> mapEntry : createSuggestedNumPlayersVoteMap().entrySet())
+        for (Entry<String, Integer> mapEntry : createSuggestedNumPlayersVoteMap().entrySet()) {
             if (mapEntry.getValue() >= maxBestVotes) {
                 numberOfPlayersWithMostBestVotes = mapEntry.getKey();
                 maxBestVotes = mapEntry.getValue();
             }
+        }
     }
 
     private Map<String, Integer> createSuggestedNumPlayersVoteMap() {
         Map<String, Integer> suggestedNumPlayersVoteMap = new LinkedHashMap<String, Integer>();
-        if (poll.getResultsList() == null) return suggestedNumPlayersVoteMap;
+        if (poll.getResultsList() == null) {
+            return suggestedNumPlayersVoteMap;
+        }
         for (Results results : poll.getResultsList()) {
-            if (results.getResults() == null) continue;
-            for (Result result : results.getResults())
+            if (results.getResults() == null) {
+                continue;
+            }
+            for (Result result : results.getResults()) {
                 if (result.getValue().equals("Best")) {
                     suggestedNumPlayersVoteMap.put(results.getNumPlayers(), result.getNumVotes());
                     continue;
                 }
+            }
         }
         return suggestedNumPlayersVoteMap;
     }

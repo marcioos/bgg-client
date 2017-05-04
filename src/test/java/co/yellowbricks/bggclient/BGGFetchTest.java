@@ -77,7 +77,11 @@ public class BGGFetchTest {
 
         UserCollection myCollection = BGG.fetchCollection(myName);
 
-        for (CollectionItem item : myCollection.getItems()) if ("Dominion".equals(item.getName())) return;
+        for (CollectionItem item : myCollection.getItems()) {
+            if ("Dominion".equals(item.getName())) {
+                return;
+            }
+        }
         fail("Dominion not found");
     }
 }

@@ -12,30 +12,30 @@ import java.util.Objects;
 public class SearchItem {
 
     @Attribute
-	private String type;
+    private String type;
 
     @Attribute
-	private int id;
+    private int id;
 
     @Element
-	private SearchItemName name;
+    private SearchItemName name;
 
     @Element(required = false)
-	private Value yearpublished;
+    private Value yearpublished;
 
-	public String getType() {
+    public String getType() {
         return type;
     }
 
-	public int getId() {
+    public int getId() {
         return id;
     }
 
-	public SearchItemName getName() {
+    public SearchItemName getName() {
         return name;
     }
 
-	public Value getYear() {
+    public Value getYear() {
         return yearpublished;
     }
 
@@ -61,17 +61,17 @@ public class SearchItem {
 
     public static final class SearchItemName {
 
-	    @Attribute
-		private String type;
+        @Attribute
+        private String type;
 
-	    @Attribute
-		private String value;
+        @Attribute
+        private String value;
 
-		public String getType() {
+        public String getType() {
             return type;
         }
 
-		public String getValue() {
+        public String getValue() {
             return value;
         }
 
