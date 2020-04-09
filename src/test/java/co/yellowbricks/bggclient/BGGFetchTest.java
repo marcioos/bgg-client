@@ -48,11 +48,6 @@ public class BGGFetchTest {
         assertThat(((ArrayList<FetchItem>) item).get(1).getName(), containsString("Macher"));
     }
 
-    @Test(expected = FetchException.class)
-    public void shouldFindNoItems() throws FetchException {
-        BGG.fetch(Arrays.asList(13123123, 2380182));
-    }
-
     @Test
     public void shouldFetchMyCollection() throws FetchException {
         String myName = "marcio_os";
@@ -68,7 +63,7 @@ public class BGGFetchTest {
 
         UserCollection myCollection = BGG.fetchCollection(myName);
 
-        assertThat(myCollection.getTermsOfUseUrl(), is("http://boardgamegeek.com/xmlapi/termsofuse"));
+        assertThat(myCollection.getTermsOfUseUrl(), is("https://boardgamegeek.com/xmlapi/termsofuse"));
     }
 
     @Test

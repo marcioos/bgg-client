@@ -31,7 +31,8 @@ public class FetchItemTest {
     public void shouldGetDieMacherMechanics() throws FetchException {
         FetchItem dieMacher = BGG.fetch(Arrays.asList(DIE_MACHER_ID)).iterator().next();
 
-        Assert.assertThat(dieMacher.getMechanics(), CoreMatchers.equalTo(Arrays.asList("Area Control / Area Influence", "Auction/Bidding", "Dice Rolling", "Hand Management", "Simultaneous Action Selection")));
+        Assert.assertThat(dieMacher.getMechanics(),
+                CoreMatchers.equalTo(Arrays.asList("Area Majority / Influence", "Auction/Bidding", "Dice Rolling", "Hand Management", "Simultaneous Action Selection")));
     }
 
     @Test
