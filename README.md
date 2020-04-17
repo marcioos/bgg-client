@@ -5,7 +5,7 @@ BoardGameGeek API 2 client for Java and Android apps
 
 **Gradle**
 ```
-implementation group: 'com.github.marcioos', name: 'bgg-client', version: '1.0'
+implementation 'com.github.marcioos:bgg-client:1.0'
 ```
 
 **Maven**
