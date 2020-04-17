@@ -1,4 +1,4 @@
-package com.github.bggclient.fetch.domain;
+package com.github.marcioos.bggclient.fetch.domain;
 
 import java.util.List;
 import java.util.Objects;

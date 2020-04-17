@@ -1,9 +1,9 @@
-package com.github.bggclient;
+package com.github.marcioos.bggclient;
 
-import com.github.bggclient.common.ThingType;
-import com.github.bggclient.search.SearchException;
-import com.github.bggclient.search.domain.SearchItem;
-import com.github.bggclient.search.domain.SearchOutput;
+import com.github.marcioos.bggclient.common.ThingType;
+import com.github.marcioos.bggclient.search.SearchException;
+import com.github.marcioos.bggclient.search.domain.SearchItem;
+import com.github.marcioos.bggclient.search.domain.SearchOutput;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

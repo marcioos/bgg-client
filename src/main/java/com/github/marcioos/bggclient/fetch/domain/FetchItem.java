@@ -1,6 +1,6 @@
-package com.github.bggclient.fetch.domain;
+package com.github.marcioos.bggclient.fetch.domain;
 
-import com.github.bggclient.common.domain.Value;
+import com.github.marcioos.bggclient.common.domain.Value;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;

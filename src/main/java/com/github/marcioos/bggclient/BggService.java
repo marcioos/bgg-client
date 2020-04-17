@@ -1,8 +1,8 @@
-package com.github.bggclient;
+package com.github.marcioos.bggclient;
 
-import com.github.bggclient.fetch.domain.FetchItemOutput;
-import com.github.bggclient.fetch.domain.UserCollection;
-import com.github.bggclient.search.domain.SearchOutput;
+import com.github.marcioos.bggclient.fetch.domain.FetchItemOutput;
+import com.github.marcioos.bggclient.fetch.domain.UserCollection;
+import com.github.marcioos.bggclient.search.domain.SearchOutput;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Retrofit.Builder;

@@ -1,10 +1,10 @@
-package com.github.bggclient.search.domain;
+package com.github.marcioos.bggclient.search.domain;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
-import com.github.bggclient.common.domain.Value;
+import com.github.marcioos.bggclient.common.domain.Value;
 
 import java.util.Objects;
 

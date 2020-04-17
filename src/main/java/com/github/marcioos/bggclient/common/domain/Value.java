@@ -1,4 +1,4 @@
-package com.github.bggclient.common.domain;
+package com.github.marcioos.bggclient.common.domain;
 
 import org.simpleframework.xml.Attribute;
 

@@ -31,7 +31,7 @@ repositories {
 
 dependencies {
   // other project dependencies
-  compile('com.github:bgg-client:3.0') {
+  compile('com.github.marcioos:bgg-client:3.0') {
     transitive = true
   }
 }
@@ -52,7 +52,7 @@ public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
 }
 ```
 
-`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem.java](src/main/java/com/github/bggclient/search/domain/SearchItem.java)
+`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem.java](src/main/java/com/github/marcioos/bggclient/search/domain/SearchItem.java)
 
 ### Fetch
 `BGG.fetch` returns objects with more detailed information regarding fetched items.
@@ -70,7 +70,7 @@ public void shouldFetchAgricolaXDeckAndDieMacher() throws FetchException {
 }
 ```
 
-`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem.java](src/main/java/com/github/bggclient/fetch/domain/FetchItem.java)
+`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem.java](src/main/java/com/github/marcioos/bggclient/fetch/domain/FetchItem.java)
 
 ### Fetch collection
 `BGG.fetchCollection` returns an user board game collection.
@@ -86,4 +86,4 @@ public void shouldFetchMyCollection() throws FetchException {
 }
 ```
 
-See [UserCollection.java](src/main/java/com/github/bggclient/fetch/domain/UserCollection.java)
+See [UserCollection.java](src/main/java/com/github/marcioos/bggclient/fetch/domain/UserCollection.java)

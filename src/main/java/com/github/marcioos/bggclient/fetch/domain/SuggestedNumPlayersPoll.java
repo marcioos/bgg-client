@@ -1,11 +1,11 @@
-package com.github.bggclient.fetch.domain;
+package com.github.marcioos.bggclient.fetch.domain;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.github.bggclient.fetch.domain.Poll.Result;
-import com.github.bggclient.fetch.domain.Poll.Results;
+import com.github.marcioos.bggclient.fetch.domain.Poll.Result;
+import com.github.marcioos.bggclient.fetch.domain.Poll.Results;
 
 public class SuggestedNumPlayersPoll {
 

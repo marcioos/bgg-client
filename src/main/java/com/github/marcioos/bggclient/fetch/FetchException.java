@@ -1,4 +1,4 @@
-package com.github.bggclient.fetch;
+package com.github.marcioos.bggclient.fetch;
 
 public class FetchException extends Exception {
 

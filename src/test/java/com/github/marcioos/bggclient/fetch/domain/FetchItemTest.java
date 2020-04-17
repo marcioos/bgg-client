@@ -1,7 +1,7 @@
-package com.github.bggclient.fetch.domain;
+package com.github.marcioos.bggclient.fetch.domain;
 
-import com.github.bggclient.BGG;
-import com.github.bggclient.fetch.FetchException;
+import com.github.marcioos.bggclient.BGG;
+import com.github.marcioos.bggclient.fetch.FetchException;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;

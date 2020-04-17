@@ -1,4 +1,4 @@
-package com.github.bggclient.search;
+package com.github.marcioos.bggclient.search;
 
 public class SearchException extends Exception {
 

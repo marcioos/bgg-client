@@ -1,4 +1,4 @@
-package com.github.bggclient.common;
+package com.github.marcioos.bggclient.common;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.github.bggclient.fetch.domain;
+package com.github.marcioos.bggclient.fetch.domain;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Root;

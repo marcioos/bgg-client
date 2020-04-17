@@ -1,12 +1,12 @@
-package com.github.bggclient;
+package com.github.marcioos.bggclient;
 
-import com.github.bggclient.common.ThingType;
-import com.github.bggclient.fetch.FetchException;
-import com.github.bggclient.fetch.domain.FetchItem;
-import com.github.bggclient.fetch.domain.FetchItemOutput;
-import com.github.bggclient.fetch.domain.UserCollection;
-import com.github.bggclient.search.SearchException;
-import com.github.bggclient.search.domain.SearchOutput;
+import com.github.marcioos.bggclient.common.ThingType;
+import com.github.marcioos.bggclient.fetch.FetchException;
+import com.github.marcioos.bggclient.fetch.domain.FetchItem;
+import com.github.marcioos.bggclient.fetch.domain.FetchItemOutput;
+import com.github.marcioos.bggclient.fetch.domain.UserCollection;
+import com.github.marcioos.bggclient.search.SearchException;
+import com.github.marcioos.bggclient.search.domain.SearchOutput;
 import retrofit2.Response;
 
 import java.util.Collection;

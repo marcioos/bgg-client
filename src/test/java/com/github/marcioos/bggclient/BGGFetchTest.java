@@ -1,10 +1,10 @@
-package com.github.bggclient;
+package com.github.marcioos.bggclient;
 
-import com.github.bggclient.common.ThingType;
-import com.github.bggclient.fetch.FetchException;
-import com.github.bggclient.fetch.domain.CollectionItem;
-import com.github.bggclient.fetch.domain.FetchItem;
-import com.github.bggclient.fetch.domain.UserCollection;
+import com.github.marcioos.bggclient.common.ThingType;
+import com.github.marcioos.bggclient.fetch.FetchException;
+import com.github.marcioos.bggclient.fetch.domain.CollectionItem;
+import com.github.marcioos.bggclient.fetch.domain.FetchItem;
+import com.github.marcioos.bggclient.fetch.domain.UserCollection;
 import org.junit.Test;
 
 import java.util.ArrayList;

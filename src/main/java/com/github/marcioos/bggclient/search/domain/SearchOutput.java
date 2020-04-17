@@ -1,4 +1,4 @@
-package com.github.bggclient.search.domain;
+package com.github.marcioos.bggclient.search.domain;
 
 import java.util.List;
 import java.util.Objects;
