@@ -7,3 +7,5 @@ target
 build
 *.iml
 local-repo
+gradle.properties
+secret-keys.gpg

@@ -1,10 +1,12 @@
 apply plugin: 'java'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
+apply plugin: 'signing'
 
 group = 'com.github.marcioos'
-version = '3.0'
+archivesBaseName = 'bgg-client'
+version = '1.0'
 
-description = "Board Game Geek Client"
+description = "Java and Android client for BoardGameGeek XML API 2"
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -27,17 +29,66 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            artifactId 'bgg-client'
-            from components.java
-        }
-    }
-
-    repositories {
-        maven {
-            url 'file:local-repo'
-        }
-    }
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
 }
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+signing {
+    sign configurations.archives
+}
+
+uploadArchives {
+  repositories {
+    mavenDeployer {
+      beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+        authentication(userName: ossrhUsername, password: ossrhPassword)
+      }
+
+      pom.project {
+        name 'bgg-client'
+        packaging 'jar'
+        artifactId 'bgg-clienẗ́'
+        description 'Java and Android client for BoardGameGeek XML API 2'
+        url 'https://github.com/marcioos/bgg-client'
+
+        scm {
+          connection 'scm:git:git@github.com:marcioos/bgg-client.git'
+          developerConnection 'scm:git:git@github.com:marcioos/bgg-client.git'
+          url 'https://github.com/marcioos/bgg-client'
+        }
+
+        licenses {
+          license {
+            name 'The Apache License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+          }
+        }
+
+        developers {
+          developer {
+            id 'marcioos'
+            name 'Marcio Oliveira'
+            email 'marciottlg@gmail.com'
+          }
+        }
+      }
+    }
+  }
+}
+

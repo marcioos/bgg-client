@@ -1,40 +1,20 @@
 # bgg-client
 BoardGameGeek API 2 client for Java and Android apps
 
-## Building
-Since bgg-client is not available on any public maven repository (someone was too lazy to go through the process), you need to build it yourself as a maven artifact and import it in your project.
+## Adding the library as a dependency in your application
 
-Run the following on the project root level:
+*Gradle*
 ```
-./gradlew publish
+compile group: 'com.github.marcioos', name: 'bgg-client', version: '1.0'
 ```
 
-This will create a folder called `local-repo` which is a local maven repo containing the bgg-client artifact.
-
-## Importing it as a Gradle dependency
-Once `local-repo` has been created, move it to the root level of your project and add the following to your `build.gradle` file:
-
-```java
-def localRepoDir = new File("$rootDir", "local-repo").toURI().toURL()
-
-buildscript {
-  repositories {
-    // other repos, e.g. jcenter()
-    maven { url localRepoDir }
-  }
-}
-
-repositories {
-  // other repos, e.g. jcenter()
-  maven { url localRepoDir }
-}
-
-dependencies {
-  // other project dependencies
-  compile('com.github.marcioos:bgg-client:3.0') {
-    transitive = true
-  }
-}
+*Maven*
+```
+<dependency>
+    <groupId>com.github.marcioos</groupId>
+    <artifactId>bgg-clienẗ́</artifactId>
+    <version>1.0</version>
+</dependency>
 ```
 
 ## Using the client
