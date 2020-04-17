@@ -1,14 +1,14 @@
 # bgg-client
 BoardGameGeek API 2 client for Java and Android apps
 
-## Adding the library as a dependency in your application
+## Adding the library as a dependency
 
-*Gradle*
+**Gradle**
 ```
 compile group: 'com.github.marcioos', name: 'bgg-client', version: '1.0'
 ```
 
-*Maven*
+**Maven**
 ```
 <dependency>
     <groupId>com.github.marcioos</groupId>
@@ -17,7 +17,7 @@ compile group: 'com.github.marcioos', name: 'bgg-client', version: '1.0'
 </dependency>
 ```
 
-## Using the client
+## Using the library
 There's a single class called `BGG` that exposes the 3 main client operations as static methods: `search`, `fetch` and `fetchCollection`.
 
 ### Search
