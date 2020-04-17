@@ -17,6 +17,9 @@ implementation 'com.github.marcioos:bgg-client:1.0'
 </dependency>
 ```
 
+## Javadocs
+http://marcioos.github.io/bgg-client/
+
 ## Using the library
 There's a single class called `BGG` that exposes the 3 main client operations as static methods: `search`, `fetch` and `fetchCollection`.
 
@@ -32,7 +35,7 @@ public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
 }
 ```
 
-`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem.java](src/main/java/com/github/marcioos/bggclient/search/domain/SearchItem.java)
+`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game.
 
 ### Fetch
 `BGG.fetch` returns objects with more detailed information regarding fetched items.
@@ -50,7 +53,7 @@ public void shouldFetchAgricolaXDeckAndDieMacher() throws FetchException {
 }
 ```
 
-`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem.java](src/main/java/com/github/marcioos/bggclient/fetch/domain/FetchItem.java)
+`FetchItem` contains most of the data available on Board Game Geek regarding a game.
 
 ### Fetch collection
 `BGG.fetchCollection` returns an user board game collection.
@@ -66,4 +69,3 @@ public void shouldFetchMyCollection() throws FetchException {
 }
 ```
 
-See [UserCollection.java](src/main/java/com/github/marcioos/bggclient/fetch/domain/UserCollection.java)
