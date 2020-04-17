@@ -12,7 +12,7 @@ compile group: 'com.github.marcioos', name: 'bgg-client', version: '1.0'
 ```
 <dependency>
     <groupId>com.github.marcioos</groupId>
-    <artifactId>bgg-clienẗ́</artifactId>
+    <artifactId>bgg-client</artifactId>
     <version>1.0</version>
 </dependency>
 ```
