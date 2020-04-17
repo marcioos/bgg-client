@@ -35,7 +35,7 @@ public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
 }
 ```
 
-`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game.
+`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchItem.html).
 
 ### Fetch
 `BGG.fetch` returns objects with more detailed information regarding fetched items.
@@ -53,7 +53,7 @@ public void shouldFetchAgricolaXDeckAndDieMacher() throws FetchException {
 }
 ```
 
-`FetchItem` contains most of the data available on Board Game Geek regarding a game.
+`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/fetch/domain/FetchItem.html).
 
 ### Fetch collection
 `BGG.fetchCollection` returns an user board game collection.
@@ -69,3 +69,4 @@ public void shouldFetchMyCollection() throws FetchException {
 }
 ```
 
+See [UserCollection](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/fetch/domain/UserCollection.html).
