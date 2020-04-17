@@ -1,0 +1,7 @@
+com.github.marcioos.bggclient
+com.github.marcioos.bggclient.common
+com.github.marcioos.bggclient.common.domain
+com.github.marcioos.bggclient.fetch
+com.github.marcioos.bggclient.fetch.domain
+com.github.marcioos.bggclient.search
+com.github.marcioos.bggclient.search.domain
