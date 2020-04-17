@@ -3,7 +3,7 @@ apply plugin: 'maven'
 apply plugin: 'signing'
 
 group = 'com.github.marcioos'
-archivesBaseName = 'bgg-client'
+archivesBaseName = "bgg-client"
 version = '1.0'
 
 description = "Java and Android client for BoardGameGeek XML API 2"
@@ -61,9 +61,9 @@ uploadArchives {
       }
 
       pom.project {
-        name 'bgg-client'
+        name "bgg-client"
         packaging 'jar'
-        artifactId 'bgg-clienẗ́'
+        artifactId "bgg-client"
         description 'Java and Android client for BoardGameGeek XML API 2'
         url 'https://github.com/marcioos/bgg-client'
 
