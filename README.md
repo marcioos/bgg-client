@@ -30,7 +30,7 @@ Use `BGG.search` for searching items based on a free text search term and an opt
 SearchOutput searchResult = BGG.search("dominion", ThingType.BOARDGAME);
 ```
 
-`SearchOutput` contains a list of `SearchItem` along with summary information on the search result. See [SearchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchItem.html).
+`SearchOutput` contains a list of `SearchItem` along with summary information on the search result. See [SearchOutput](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchOutput.html) and [SearchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchItem.html).
 
 ### Fetch
 Use `BGG.fetch` to retrieve more detailed information about specific items, looking up by their BoardGameGeek database IDs, which can be found with the `BGG.search` method above.
