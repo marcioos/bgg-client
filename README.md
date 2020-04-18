@@ -24,49 +24,33 @@ http://marcioos.github.io/bgg-client/
 There's a single class called `BGG` that exposes the 3 main client operations as static methods: `search`, `fetch` and `fetchCollection`.
 
 ### Search
-`BGG.search` finds items that match a given query string and a list of `ThingType` (var-arg).
+Use `BGG.search` for searching items based on a free text search term and an optional list of `ThingType` (var-arg).
 
 ```java
-@Test
-public void shouldReturnCorrectAmountOfDominionGames() throws SearchException {
-    SearchOutput items = BGG.search("dominion", ThingType.BOARDGAME);
-
-    assertThat(items.getTotal() > 50, is(true));
-}
+SearchOutput searchResult = BGG.search("dominion", ThingType.BOARDGAME);
 ```
 
-`SearchOutput` contains a list of `SearchItem` which have a limited amount of information regarding each game. See [SearchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchItem.html).
+`SearchOutput` contains a list of `SearchItem` along with summary information on the search result. See [SearchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/search/domain/SearchItem.html).
 
 ### Fetch
-`BGG.fetch` returns objects with more detailed information regarding fetched items.
+Use `BGG.fetch` to retrieve more detailed information about specific items, looking up by their BoardGameGeek database IDs, which can be found with the `BGG.search` method above.
 
 ```java
-@Test
-public void shouldFetchAgricolaXDeckAndDieMacher() throws FetchException {
-    int agricolaXDeckId = 38733;
-    int dieMacherId = 1;
+int agricolaXDeckId = 38733;
+int dieMacherId = 1;
 
-    Collection<FetchItem> item = BGG.fetch(Arrays.asList(agricolaXDeckId, dieMacherId));
-
-    assertThat(((ArrayList<FetchItem>) item).get(0).getName(), containsString("Agricola"));
-    assertThat(((ArrayList<FetchItem>) item).get(1).getName(), containsString("Macher"));
-}
+Collection<FetchItem> item = BGG.fetch(Arrays.asList(agricolaXDeckId, dieMacherId));
 ```
 
-`FetchItem` contains most of the data available on Board Game Geek regarding a game. See [FetchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/fetch/domain/FetchItem.html).
+`FetchItem` contains most of the data available on BoardGameGeek related to an item. See [FetchItem](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/fetch/domain/FetchItem.html).
 
 ### Fetch collection
-`BGG.fetchCollection` returns an user board game collection.
+Use `BGG.fetchCollection` for retrieving an user's collection by their username on BoardGameGeek.
 
 ```java
-@Test
-public void shouldFetchMyCollection() throws FetchException {
-    String myName = "marcio_os";
+String username = "marcio_os";
 
-    UserCollection myCollection = BGG.fetchCollection(myName);
-
-    assertThat(myCollection.getTotalItems(), is(not(0)));
-}
+UserCollection myCollection = BGG.fetchCollection(username);
 ```
 
 See [UserCollection](http://marcioos.github.io/bgg-client/com/github/marcioos/bggclient/fetch/domain/UserCollection.html).
